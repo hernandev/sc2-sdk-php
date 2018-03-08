@@ -1,0 +1,39 @@
+{
+    "name": "hernandev/sc2-sdk-php",
+    "description": "PHP SDK for SteemConnect V2",
+    "type": "library",
+    "keywords": ["steem", "steemconnect", "steem-connect", "sc2", "sdk"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Diego Hernandes",
+            "email": "diego@hernandev.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "SteemConnect\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SteemConnect\\": "tests/"
+        }
+    },
+    "require": {
+        "league/oauth2-client": "^2.3",
+        "php": ">=7.1.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "illuminate/support": "^5.6",
+        "symfony/http-foundation": "^4.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "hernandev/oauth2-sc2": "^0.10.1",
+        "nesbot/carbon": "^1.23"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0",
+        "mockery/mockery": "^1.0"
+    }
+}
