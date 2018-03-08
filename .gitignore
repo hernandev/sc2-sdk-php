@@ -1,0 +1,13 @@
+# package ignores.
+/vendor
+/composer.lock
+
+
+# developent ignores
+/public
+/sandbox
+/docker-compose.yml
+
+# phpunit / tests ignores.
+/phpunit.xml
+/coverage
