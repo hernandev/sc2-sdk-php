@@ -1,6 +1,6 @@
 {
     "name": "hernandev/sc2-sdk-php",
-    "description": "SteemConnect V2 PHP SDK",
+    "description": "PHP SDK for SteemConnect V2",
     "type": "library",
     "keywords": ["steem", "steemconnect", "steem-connect", "sc2", "sdk"],
     "license": "MIT",
