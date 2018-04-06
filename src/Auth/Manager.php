@@ -4,11 +4,10 @@ namespace SteemConnect\Auth;
 
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\ServerException;
-use Illuminate\Container\Container;
 use SteemConnect\Config\Config;
 use SteemConnect\Exceptions\TokenException;
 use SteemConnect\Http\Client;
-use SteemConnect\Http\Response;
+use SteemConnect\Client\Response;
 use SteemConnect\OAuth2\Provider\Provider;
 use SteemConnect\Operations\Comment;
 use SteemConnect\Operations\Operation;
@@ -36,16 +35,6 @@ class Manager
      * @var Token|null Access Token instance.
      */
     protected $accessToken = null;
-
-    /**
-     * @var array Map Steem operation types into classes representing them.
-     */
-    protected $operations = [
-        // votes.
-        'vote' => Vote::class,
-        // comment.
-        'comment' => Comment::class,
-    ];
 
     /**
      * Manager constructor.
@@ -112,36 +101,5 @@ class Manager
     {
         // setup a new HttpClient.
         return new Client($this->config, $this->accessToken);
-    }
-
-    protected function postBroadcast(array $operationsList = [])
-    {
-        try {
-            $response = $this->getHttpClient()->call('POST', 'api/broadcast', [ 'operations' => $operationsList ]);
-
-            return new Response($response);
-        } catch (BadResponseException $e) {
-            return new Response($e->getResponse());
-        }
-    }
-
-    /**
-     * Broadcasts an Operation through SteemConnect V2.
-     *
-     * @param array $operations List of operations to broadcast, usually, just one.
-     *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     */
-    public function broadcast(...$operations)
-    {
-        $operationsList = collect($operations)->toArray();
-
-        try {
-            $response = $this->getHttpClient()->call('POST', 'api/broadcast', [ 'operations' => $operationsList ]);
-
-            return new Response($response);
-        } catch (BadResponseException $e) {
-            return new Response($e->getResponse());
-        }
     }
 }

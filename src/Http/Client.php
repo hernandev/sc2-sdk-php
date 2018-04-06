@@ -6,7 +6,7 @@ use GuzzleHttp\Psr7\Request;
 use SteemConnect\Auth\Token;
 use SteemConnect\Config\Config;
 use GuzzleHttp\Client as HttpClient;
-use SteemConnect\Operations\Comment;
+use GuzzleHttp\ClientInterface as HttpClientInterface;
 
 /**
  * Class Client
@@ -21,7 +21,7 @@ class Client
     protected $config = null;
 
     /**
-     * @var HttpClient|null Guzzle http client instance.
+     * @var HttpClientInterface|null Guzzle http client instance.
      */
     protected $httpClient = null;
 
@@ -32,11 +32,12 @@ class Client
 
     /**
      * Client constructor.
-     * @param Config|null $config
-     * @param Token|null $token
-     * @param HttpClient|null $httpClient
+     *
+     * @param Config|null              $config     Configuration instance.
+     * @param Token|null               $token      Access token (if any already exists).
+     * @param HttpClientInterface|null $httpClient Optional Custom HTTP client to be used.
      */
-    public function __construct(Config $config = null, Token $token = null, HttpClient $httpClient = null)
+    public function __construct(Config $config = null, Token $token = null, HttpClientInterface $httpClient = null)
     {
         // config instance.
         $this->config = $config;
@@ -99,9 +100,9 @@ class Client
     /**
      * HttpClient instance.
      *
-     * @param HttpClient $httpClient
+     * @param HttpClientInterface $httpClient
      */
-    public function setHttpClient(HttpClient $httpClient)
+    public function setHttpClient(HttpClientInterface $httpClient)
     {
         $this->httpClient = $httpClient;
     }
@@ -109,26 +110,42 @@ class Client
     /**
      * Returns the custom or factories a new HttpClient for the API client.
      *
-     * @return HttpClient
+     * @return HttpClientInterface
      */
-    public function getHttpClient() : HttpClient
+    public function getHttpClient() : HttpClientInterface
     {
-        if ($this->httpClient) {
-            return $this->httpClient;
-        }
-
-        return new HttpClient();
+        // returns a new HTTP client, if none is set on the client instance.
+        return $this->httpClient ? $this->httpClient : new HttpClient();
     }
 
+    /**
+     * Returns a list of default HTTP headers to include in every request
+     *
+     * @return array
+     */
     protected function defaultHeaders()
     {
         return [
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
+            // accepted types of response.
+            'Accept'        => 'application/json',
+            // current request content type.
+            'Content-Type'  => 'application/json',
+            // authorization (OAuth token) header.
             'Authorization' => "Bearer {$this->accessToken->getToken()}",
         ];
     }
 
+    /**
+     * Execute a HTTP request.
+     *
+     * @param string     $method HTTP method to call (most of the time, it's post.)
+     * @param string     $uri    HTTP request URI.
+     * @param array|null $body   HTTP request body.
+     *
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function call(string $method, string $uri, array $body = null)
     {
         $request = new Request($method, $this->config->buildUrl($uri), $this->defaultHeaders(), $body ? json_encode($body) : null);
