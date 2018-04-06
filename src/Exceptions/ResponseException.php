@@ -53,11 +53,7 @@ class ResponseException extends ClientException
         }
 
         // in case the body is a string, just not an array / json.
-        if (is_string($this->responseBody)) {
-            return $this->responseBody;
-        }
-
-        // return the http status reason otherwise.
-        return $this->responseStatusMessage;
+        // return just the status message otherwise.
+        return is_string($this->responseBody) ? strip_tags($this->responseBody) : $this->responseStatusMessage;
     }
 }
