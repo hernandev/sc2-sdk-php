@@ -3,9 +3,14 @@
 namespace SteemConnect\Auth;
 
 use Carbon\Carbon;
-use PHPUnit\Framework\TestCase;
 use SteemConnect\Exceptions\TokenException;
+use SteemConnect\TestCase;
 
+/**
+ * Class TokenTest.
+ *
+ * Access token tests.
+ */
 class TokenTest extends TestCase
 {
     /**
@@ -29,6 +34,9 @@ class TokenTest extends TestCase
         ];
     }
 
+    /**
+     * Token parsing.
+     */
     public function test_token_parsing()
     {
         $token = Token::fromArray($this->validToken);
@@ -36,6 +44,9 @@ class TokenTest extends TestCase
         $this->assertInstanceOf(Token::class, $token);
     }
 
+    /**
+     * Empty token.
+     */
     public function test_empty_token_parsing_exception()
     {
         try {
@@ -45,6 +56,9 @@ class TokenTest extends TestCase
         }
     }
 
+    /**
+     * Token JSON serialization tests.
+     */
     public function test_json_serialization()
     {
         $originalJson = json_encode($this->validToken);
@@ -56,6 +70,9 @@ class TokenTest extends TestCase
         $this->assertEquals($originalJson, json_encode($token->toArray()));
     }
 
+    /**
+     * Token JSON string parsing tests.
+     */
     public function test_token_parsing_from_json_string()
     {
         $jsonString = json_encode($this->validToken);
@@ -65,6 +82,9 @@ class TokenTest extends TestCase
         $this->assertInstanceOf(Token::class, $token);
     }
 
+    /**
+     * Invalid token parsing tests.
+     */
     public function test_token_parsing_from_json_string_with_invalid_data()
     {
         $jsonString = json_encode(['foo' => 'bar']);
