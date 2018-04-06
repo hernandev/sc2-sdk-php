@@ -207,9 +207,13 @@ class Client
     }
 
     /**
+     * Broadcast one or more operations to the Steem blockchain though SteemConnect.
+     *
      * @param array ...$operations
      *
      * @return Response
+     *
+     * @throws
      */
     public function broadcast(...$operations)
     {

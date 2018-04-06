@@ -22,7 +22,7 @@ class Config extends OAuthConfig
     /**
      * @var null|string Community name.
      */
-    protected $community;
+    protected $community = null;
 
     /**
      * Customize the application name (metadata on posts).
