@@ -4,7 +4,6 @@ namespace SteemConnect\Transactions;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use SteemConnect\Operations\Comment;
 use SteemConnect\Operations\CustomJson;
@@ -105,7 +104,7 @@ class Transaction implements Arrayable
     public static function factory(array $transactionData = [])
     {
         // extract the result key from transaction data.
-        $data = Arr::has($transactionData, 'result') ? array_get($transactionData, 'result') : $transactionData;
+        $data = array_has($transactionData, 'result') ? array_get($transactionData, 'result') : $transactionData;
 
         // create a transaction instance.
         $transaction = new self();
