@@ -11,3 +11,10 @@
 # phpunit / tests ignores.
 /phpunit.xml
 /coverage
+
+
+# temporary docs and examples ignore
+/examples
+/mkdocs.yml
+/docs
+/site
