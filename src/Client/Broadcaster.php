@@ -5,6 +5,7 @@ namespace SteemConnect\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use SteemConnect\Auth\Token;
 use SteemConnect\Config\Config;
+use GuzzleHttp\Exception\GuzzleException as HttpClientException;
 use SteemConnect\Exceptions\ClientException;
 use SteemConnect\Exceptions\ResponseException;
 use SteemConnect\Http\Client as HttpClient;
@@ -129,7 +130,7 @@ class Broadcaster
      *
      * @param array $operations List of operations to broadcast, usually, just one.
      *
-     * @throws ResponseException
+     * @throws \Exception
      *
      * @return Response
      */
@@ -156,6 +157,9 @@ class Broadcaster
         } catch (BadResponseException $e) {
             // throw a custom response exception otherwise.
             throw new ResponseException($e->getResponse());
+        } catch (HttpClientException $e) {
+            // throw a client exception, passing the previous one.
+            throw new ClientException("Error broadcasting the operation", 0, $e);
         }
     }
 
