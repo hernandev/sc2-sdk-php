@@ -15,6 +15,6 @@
 
 # temporary docs and examples ignore
 /examples
-/mkdocs.yml
-/docs
+#/mkdocs.yml
+#/docs
 /site
