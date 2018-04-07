@@ -278,9 +278,112 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Operations
+      </label>
+    
     <a href="./" title="Operations" class="md-nav__link md-nav__link--active">
       Operations
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#broad-what-ope-who" title="Broad-what, Ope-who?" class="md-nav__link">
+    Broad-what, Ope-who?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-quick-example" title="A quick example." class="md-nav__link">
+    A quick example.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-operations" title="Available Operations." class="md-nav__link">
+    Available Operations.
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#voting" title="Voting." class="md-nav__link">
+    Voting.
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upvote-example" title="Upvote Example:" class="md-nav__link">
+    Upvote Example:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downvote-example" title="Downvote Example:" class="md-nav__link">
+    Downvote Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-unfollow" title="Follow &amp; UnFollow." class="md-nav__link">
+    Follow &amp; UnFollow.
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#follow-example" title="Follow Example:" class="md-nav__link">
+    Follow Example:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unfollow-example" title="UnFollow Example:" class="md-nav__link">
+    UnFollow Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -302,6 +405,96 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#broad-what-ope-who" title="Broad-what, Ope-who?" class="md-nav__link">
+    Broad-what, Ope-who?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-quick-example" title="A quick example." class="md-nav__link">
+    A quick example.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-operations" title="Available Operations." class="md-nav__link">
+    Available Operations.
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#voting" title="Voting." class="md-nav__link">
+    Voting.
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upvote-example" title="Upvote Example:" class="md-nav__link">
+    Upvote Example:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downvote-example" title="Downvote Example:" class="md-nav__link">
+    Downvote Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-unfollow" title="Follow &amp; UnFollow." class="md-nav__link">
+    Follow &amp; UnFollow.
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#follow-example" title="Follow Example:" class="md-nav__link">
+    Follow Example:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unfollow-example" title="UnFollow Example:" class="md-nav__link">
+    UnFollow Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -316,7 +509,273 @@
                 
                 
                 <h1 id="broadcasting-operations">Broadcasting Operations<a class="headerlink" href="#broadcasting-operations" title="Permanent link">&para;</a></h1>
-<p>Considering the users are</p>
+<p>Considering the user already authorized your application, and you have the SDK client instance configured with the
+user's access token, it's now time to broadcast operations.</p>
+<h2 id="broad-what-ope-who">Broad-what, Ope-who?<a class="headerlink" href="#broad-what-ope-who" title="Permanent link">&para;</a></h2>
+<p>If you are lost on those terms, just understand the basics:</p>
+<p>An <strong>operation</strong>, is a given instruction transmitted to the Seem blockchain. The instruction could
+be an upvote, downvote, comment, etc.</p>
+<p><strong>Broadcast</strong> is just a common name used to reference the act of signing and including the operation(s)
+into the Steem blockchain.</p>
+<p>Sometimes, a single operation will be broadcast, and, in other cases, like adding beneficiaries to a given
+ comment, more than one operation will be broadcast at the same time.</p>
+<p>Finally, we have the <strong>transaction</strong> concept. A transaction is the result of a successful broadcast of
+a given number of operations.</p>
+<p>Meaning, a transaction is a record within a Steem blockchain block, and a transaction contains all the
+operations that were broadcast.</p>
+<h2 id="a-quick-example">A quick example.<a class="headerlink" href="#a-quick-example" title="Permanent link">&para;</a></h2>
+<p>Before we head on a reference of all types of operations available, We need to understand
+the SDK flow for handling SteemConnect responses.</p>
+<p>Here is a quick example, where we will upvote a given post:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// classes used on the example:</span>
+
+<span class="k">use</span> <span class="nx">SteemConnect\Operations\Vote</span><span class="p">;</span>
+
+<span class="c1">// lets create a upvote operation:</span>
+<span class="nv">$upvote</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vote</span><span class="p">();</span>
+<span class="c1">// set who is the user voting.</span>
+<span class="nv">$upvote</span><span class="o">-&gt;</span><span class="na">voter</span><span class="p">(</span><span class="s1">&#39;hernandev&#39;</span><span class="p">);</span>
+<span class="c1">// let&#39;s vote on:</span>
+<span class="c1">// https://busy.org/@utopian-io/utopian-io-reborn-smarter-simpler-better</span>
+<span class="nv">$upvote</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;utopian-io&#39;</span><span class="p">,</span> <span class="s1">&#39;utopian-io-reborn-smarter-simpler-better&#39;</span><span class="p">);</span>
+<span class="c1">// now, set the upvote at 50%</span>
+<span class="nv">$upvote</span><span class="o">-&gt;</span><span class="na">percent</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+
+<span class="c1">// broadcast the operation to Steem through SteemConnect.</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$sdk</span><span class="o">-&gt;</span><span class="na">broadcast</span><span class="p">(</span><span class="nv">$operation</span><span class="p">)</span>
+
+<span class="c1">// get the transaction from the broadcast response.</span>
+<span class="nv">$transaction</span> <span class="o">=</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getTransaction</span><span class="p">();</span>
+</pre></div>
+</td></tr></table>
+
+<p>The SDK api is really simple to understand, but, let's break down the concepts:</p>
+<p>First, on that example, we created a <strong><code>Vote</code></strong> operation instance, and populated that vote
+with the parameters we wanted.</p>
+<p>It's important to notice that, given Steem blockchain data structures, we need to set who is the account
+responsible for the operation, that's why the <strong><code>voter</code></strong> method was called.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Notice that, on the SDK calls, the <strong><code>@</code></strong> should not be used, only the account names. On the example,
+the user <strong><code>@hernandev</code></strong> is voting on a post by <strong><code>@utopian-io</code></strong>, both accounts must
+be referenced as <strong><code>hernandev</code></strong> and <strong><code>utopian-io</code></strong> only, without the <strong><code>@</code></strong>. </p>
+</div>
+<p>Now, to what matters:</p>
+<p>The <strong><code>$response</code></strong> variable, returned from the <strong><code>broadcast()</code></strong> method on the SDK, is an instance of 
+<strong><code>SteemConnect\Client\Response</code></strong>, this class is used to wrap the HTTP response from
+SteemConnect.</p>
+<p>In cases of errors, the broadcast method will not return a <strong><code>Response</code></strong> instance, instead, it will throw an exception.</p>
+<p>On success cases, the transaction, that is the result of the broadcast, can be accessed though the <strong><code>getTransaction()</code></strong>
+method on the <strong><code>Response</code></strong> instance.</p>
+<p>The transaction, from that method, is an instance of <strong><code>SteemConnect\Transactions\Transaction</code></strong>, and an be converted to an
+array, for storage purposes, or it's data can also be accessed using the Transaction getters. For a full list of the
+available methods, consult the
+<a href="https://github.com/hernandev/sc2-sdk-php/blob/master/src/Transactions/Transaction.php">source code directly here</a>.</p>
+<h2 id="available-operations">Available Operations.<a class="headerlink" href="#available-operations" title="Permanent link">&para;</a></h2>
+<p>Here we list valid operation examples, that can be adapted on your applications. Notice that each operation has it's
+corresponding required scope, which the user must have previously allowed, on the authorization flow.</p>
+<h3 id="voting">Voting.<a class="headerlink" href="#voting" title="Permanent link">&para;</a></h3>
+<p>Both upvote and downvote are the same operation, the difference is the percent given on the vote. In other words, a vote
+weight can vary between -100% and 100%.</p>
+<p>On the numerous Steem frontend applications, the downvote is displayed as <code>flagged posts</code>, which means the weight itself
+is rarely shown.</p>
+<p>For this library, the weight of a given vote can be passed as argument using any percent notation:</p>
+<ul>
+<li>
+<p><strong>Integer Notation</strong></p>
+<p><strong><code>100</code></strong> represents <strong><code>100%</code></strong>, <strong><code>50</code></strong> represents <strong><code>50%</code></strong>, etc.</p>
+</li>
+<li>
+<p><strong>Default Notation</strong></p>
+<p>Used by most Steem clients, and the internal format, where a <strong><code>100%</code></strong> vote is represented by the number <strong><code>10000</code></strong>.</p>
+</li>
+</ul>
+<h4 id="upvote-example">Upvote Example:<a class="headerlink" href="#upvote-example" title="Permanent link">&para;</a></h4>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// alias classes:</span>
+<span class="k">use</span> <span class="nx">SteemConnect\Operations\Vote</span><span class="p">;</span>
+
+<span class="c1">// lets create a upvote operation:</span>
+<span class="nv">$upvote</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vote</span><span class="p">();</span>
+<span class="c1">// set who is the user voting.</span>
+<span class="nv">$upvote</span><span class="o">-&gt;</span><span class="na">voter</span><span class="p">(</span><span class="s1">&#39;hernandev&#39;</span><span class="p">);</span>
+<span class="c1">// let&#39;s vote on:</span>
+<span class="c1">// https://busy.org/@utopian-io/utopian-io-reborn-smarter-simpler-better</span>
+<span class="nv">$upvote</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;utopian-io&#39;</span><span class="p">,</span> <span class="s1">&#39;utopian-io-reborn-smarter-simpler-better&#39;</span><span class="p">);</span>
+<span class="c1">// now, set the upvote at 90%</span>
+<span class="nv">$upvote</span><span class="o">-&gt;</span><span class="na">percent</span><span class="p">(</span><span class="mi">90</span><span class="p">);</span>
+
+<span class="c1">// broadcast the operation to Steem through SteemConnect.</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$sdk</span><span class="o">-&gt;</span><span class="na">broadcast</span><span class="p">(</span><span class="nv">$upvote</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<h4 id="downvote-example">Downvote Example:<a class="headerlink" href="#downvote-example" title="Permanent link">&para;</a></h4>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// alias classes:</span>
+<span class="k">use</span> <span class="nx">SteemConnect\Operations\Vote</span><span class="p">;</span>
+
+<span class="c1">// lets create a upvote operation:</span>
+<span class="nv">$upvote</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vote</span><span class="p">();</span>
+<span class="c1">// set who is the user voting.</span>
+<span class="nv">$upvote</span><span class="o">-&gt;</span><span class="na">voter</span><span class="p">(</span><span class="s1">&#39;hernandev&#39;</span><span class="p">);</span>
+<span class="c1">// let&#39;s vote on:</span>
+<span class="c1">// https://busy.org/@utopian-io/utopian-io-reborn-smarter-simpler-better</span>
+<span class="nv">$upvote</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;utopian-io&#39;</span><span class="p">,</span> <span class="s1">&#39;utopian-io-reborn-smarter-simpler-better&#39;</span><span class="p">);</span>
+<span class="c1">// now, set the upvote at -100%</span>
+<span class="nv">$upvote</span><span class="o">-&gt;</span><span class="na">percent</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">);</span>
+
+<span class="c1">// broadcast the operation to Steem through SteemConnect.</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$sdk</span><span class="o">-&gt;</span><span class="na">broadcast</span><span class="p">(</span><span class="nv">$upvote</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>If for some reason, you want to change the vote, all you need is to broadcast the new vote, Steem will consider the
+last vote as valid and the previous ones as invalid.</p>
+<h3 id="follow-unfollow">Follow &amp; UnFollow.<a class="headerlink" href="#follow-unfollow" title="Permanent link">&para;</a></h3>
+<p>Follow and Unfollow, are also, the same operation, meaning that the difference is only a internal flag 
+inside it called <strong><code>what</code></strong>.</p>
+<p>The what parameter of a follow operation is an array, and the value <code>"blog"</code> indicated the follow status.</p>
+<h4 id="follow-example">Follow Example:<a class="headerlink" href="#follow-example" title="Permanent link">&para;</a></h4>
+<p>On this example, the user <code>@hernandev</code> starts following the user <code>@utopian-io</code>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// alias classes:</span>
+<span class="k">use</span> <span class="nx">SteemConnect\Operations\Follow</span><span class="p">;</span>
+
+<span class="c1">// create the operation:</span>
+<span class="nv">$follow</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Follow</span><span class="p">();</span>
+<span class="c1">// set the follower.</span>
+<span class="nv">$follow</span><span class="o">-&gt;</span><span class="na">follower</span><span class="p">(</span><span class="s1">&#39;hernandev&#39;</span><span class="p">);</span>
+<span class="c1">// set who to follow.</span>
+<span class="nv">$follow</span><span class="o">-&gt;</span><span class="na">follow</span><span class="p">(</span><span class="s1">&#39;utopian-io&#39;</span><span class="p">)</span>
+
+<span class="c1">// broadcast the operation to Steem through SteemConnect.</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$sdk</span><span class="o">-&gt;</span><span class="na">broadcast</span><span class="p">(</span><span class="nv">$follow</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<h4 id="unfollow-example">UnFollow Example:<a class="headerlink" href="#unfollow-example" title="Permanent link">&para;</a></h4>
+<p>On this example, the user <code>@hernandev</code> stops following the user <code>@utopian-io</code>.</p>
+<p>This means we are reverting the previous follow operation.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// alias classes:</span>
+<span class="k">use</span> <span class="nx">SteemConnect\Operations\Follow</span><span class="p">;</span>
+
+<span class="c1">// create the operation:</span>
+<span class="nv">$follow</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Follow</span><span class="p">();</span>
+<span class="c1">// set the follower.</span>
+<span class="nv">$follow</span><span class="o">-&gt;</span><span class="na">follower</span><span class="p">(</span><span class="s1">&#39;hernandev&#39;</span><span class="p">);</span>
+<span class="c1">// let&#39;s unfollow.</span>
+<span class="nv">$follow</span><span class="o">-&gt;</span><span class="na">unfollow</span><span class="p">(</span><span class="s1">&#39;utopian-io&#39;</span><span class="p">)</span>
+
+<span class="c1">// broadcast the operation to Steem through SteemConnect.</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$sdk</span><span class="o">-&gt;</span><span class="na">broadcast</span><span class="p">(</span><span class="nv">$follow</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
                 
                   
                 
