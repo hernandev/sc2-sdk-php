@@ -30,3 +30,4 @@ pages:
   - Home: index.md
   - Configuration: 01-configuration.md
   - Authentication: 02-authentication.md
+  - Operations: 03-operations.md
