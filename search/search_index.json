@@ -1,32 +1,32 @@
 {
     "docs": [
         {
-            "location": "/",
+            "location": "/00-introduction/",
             "text": "Introduction\n - SteemConnect PHP SDK\n\n\nThis is the documentation for \nSteemConnect\n \nPHP SDK\n, which is available at \nhttps://github.com/hernandev/sc2-sdk-php\n.\n\n\nWhat this library is about?\n\n\nThis library allows for interaction with \nSteemConnect\n (v2) on PHP projects.\n\n\nMeaning this library can achieve two things:\n\n\nHandle authentication flow\n:\n\n\nAuthentication and Authorization flow though OAuth.\n\n\nBuild and broadcast operations\n:\n\n\nBroadcast Steem blockchain operations through SteemConnect.\n\n\n What this library is NOT about:\n\n\nThis library is intended to be a SteemConnect client for PHP only. Meaning no additional scopes were incorporated.\n\n\nParsing transactions and content display is not a part of this project.\n\n\nIf you are looking into displaying Steem blockchain posts, you may use another project of mine, \nLightRPC\n.",
             "title": "Home"
         },
         {
-            "location": "/#introduction-steemconnect-php-sdk",
+            "location": "/00-introduction/#introduction-steemconnect-php-sdk",
             "text": "This is the documentation for  SteemConnect   PHP SDK , which is available at  https://github.com/hernandev/sc2-sdk-php .",
             "title": "Introduction - SteemConnect PHP SDK"
         },
         {
-            "location": "/#what-this-library-is-about",
+            "location": "/00-introduction/#what-this-library-is-about",
             "text": "This library allows for interaction with  SteemConnect  (v2) on PHP projects.  Meaning this library can achieve two things:",
             "title": "What this library is about?"
         },
         {
-            "location": "/#handle-authentication-flow",
+            "location": "/00-introduction/#handle-authentication-flow",
             "text": "Authentication and Authorization flow though OAuth.",
             "title": "Handle authentication flow:"
         },
         {
-            "location": "/#build-and-broadcast-operations",
+            "location": "/00-introduction/#build-and-broadcast-operations",
             "text": "Broadcast Steem blockchain operations through SteemConnect.",
             "title": "Build and broadcast operations:"
         },
         {
-            "location": "/#what-this-library-is-not-about",
+            "location": "/00-introduction/#what-this-library-is-not-about",
             "text": "This library is intended to be a SteemConnect client for PHP only. Meaning no additional scopes were incorporated.  Parsing transactions and content display is not a part of this project.  If you are looking into displaying Steem blockchain posts, you may use another project of mine,  LightRPC .",
             "title": "What this library is NOT about:"
         },
