@@ -281,6 +281,26 @@
     Configuration Class.
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#return-url" title="Return URL." class="md-nav__link">
+    Return URL.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scopes" title="Scopes." class="md-nav__link">
+    Scopes.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
       
@@ -319,6 +339,26 @@
     Configuration Class.
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#return-url" title="Return URL." class="md-nav__link">
+    Return URL.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scopes" title="Scopes." class="md-nav__link">
+    Scopes.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
       
@@ -340,19 +380,127 @@
                   <a href="https://github.com/hernandev/sc2-sdk-php/edit/master/docs/01-configuration.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="configuration">Configuration</h1>
+                <h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
 <p>Before heading into SDK usage, we need to configure it, with credentials, return url and scopes.</p>
-<h2 id="configuration-class">Configuration Class.</h2>
-<p>To start, we are going to create an instance of <code>SteemConnect\Config\Config</code>.</p>
-<pre><code class="php">&lt;?php
+<h2 id="configuration-class">Configuration Class.<a class="headerlink" href="#configuration-class" title="Permanent link">&para;</a></h2>
+<p>To start, we are going to create an instance of <strong><code>SteemConnect\Config\Config</code></strong>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 
-use SteemConnect\Config\Config;
+<span class="k">use</span> <span class="nx">SteemConnect\Config\Config</span><span class="p">;</span>
 
-$clientId = 'your-steem-connect-client-id';
-$clientSecret = 'your-steem-connect-client-secret';
+<span class="c1">// the client id and secret can be obtained on SteemConnect dashboard.</span>
+<span class="nv">$clientId</span> <span class="o">=</span> <span class="s1">&#39;your-steem-connect-client-id&#39;</span><span class="p">;</span>
+<span class="nv">$clientSecret</span> <span class="o">=</span> <span class="s1">&#39;your-steem-connect-client-secret&#39;</span><span class="p">;</span>
 
-$config = new Config($clientId, $clientSecret);
-</code></pre>
+<span class="c1">// create the configuration instance, using  the credentials.</span>
+<span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Config</span><span class="p">(</span><span class="nv">$clientId</span><span class="p">,</span> <span class="nv">$clientSecret</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="return-url">Return URL.<a class="headerlink" href="#return-url" title="Permanent link">&para;</a></h3>
+<p>The return URL is a parameter for the OAuth authorization flow. This URL will receive
+the temporary code from SteemConnect after the user authorizes your application
+to act on the their behalf.</p>
+<p>To configure the return URL, you just call the <strong><code>setReturnUrl</code></strong> method on the Config object:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// set the return URL on config.</span>
+<span class="nv">$config</span><span class="o">-&gt;</span><span class="na">setReturnUrl</span><span class="p">(</span><span class="s1">&#39;https://your-steem-app/auth/callback&#39;</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The URL being used on configuration must match the one configured on SteemConnect dashboard, otherwise the authorization flow will fail.</p>
+</div>
+<h3 id="scopes">Scopes.<a class="headerlink" href="#scopes" title="Permanent link">&para;</a></h3>
+<p>Other required configuration are which scopes your application requires.</p>
+<p>On the OAuth flow, a scope could be translated to which permissions your users will grant you.</p>
+<p>There are several scopes available. The list of scopes presented here may change with time, so, an up-to-date reference can fe found at <strong><a href="https://github.com/steemit/steemconnect/wiki/OAuth-2#scopes">SteemConnect wiki</a></strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>login</strong></td>
+<td>Verify Steem identity</td>
+</tr>
+<tr>
+<td><strong>offline</strong></td>
+<td>Allow long-lived token</td>
+</tr>
+<tr>
+<td><strong>vote</strong></td>
+<td>Upvote, downvote or unvote a post or comment</td>
+</tr>
+<tr>
+<td><strong>comment</strong></td>
+<td>Publish or edit a post or a comment</td>
+</tr>
+<tr>
+<td><strong>comment_delete</strong></td>
+<td>Delete a post or a comment</td>
+</tr>
+<tr>
+<td><strong>comment_options</strong></td>
+<td>Add options for a post or comment</td>
+</tr>
+<tr>
+<td><strong>custom_json</strong></td>
+<td>Follow, unfollow, ignore, reblog or any custom_json operation</td>
+</tr>
+<tr>
+<td><strong>claim_reward_balance</strong></td>
+<td>Claim reward for user</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your application only needs to verify the user identity, the required scope <strong><code>login</code></strong> does not persist changes on the user account, so be sure to remember the user session to avoid the authorization dialog in every visit.</p>
+</div>
+<p>To configure the scopes your application will require, just call the <code>setScopes</code> method on the config object, passing those scopes as an array:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// set the required scopes on the configuration.</span>
+<span class="nv">$config</span><span class="o">-&gt;</span><span class="na">setScopes</span><span class="p">([</span>
+    <span class="s1">&#39;login&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;vote&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;comment&#39;</span>
+<span class="p">]);</span>
+</pre></div>
+</td></tr></table>
                 
                   
                 
@@ -401,6 +549,18 @@ $config = new Config($clientId, $clientSecret);
       </div>
       
         
+  <div class="md-footer-social">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <a href="https://github.com/squidfunk" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/squidfunk" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://linkedin.com/in/squidfunk" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
       
     </div>
   </div>
