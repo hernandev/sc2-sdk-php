@@ -3,7 +3,7 @@
         {
             "location": "/",
             "text": "Introduction\n - SteemConnect PHP SDK\n\n\nThis is the documentation for \nSteemConnect\n \nPHP SDK\n, which is available at \nhttps://github.com/hernandev/sc2-sdk-php\n.\n\n\nWhat this library is about?\n\n\nThis library allows for interaction with \nSteemConnect\n (v2) on PHP projects.\n\n\nMeaning this library can achieve two things:\n\n\nHandle authentication flow\n:\n\n\nAuthentication and Authorization flow though OAuth.\n\n\nBuild and broadcast operations\n:\n\n\nBroadcast Steem blockchain operations through SteemConnect.\n\n\n What this library is NOT about:\n\n\nThis library is intended to be a SteemConnect client for PHP only. Meaning no additional scopes were incorporated.\n\n\nParsing transactions and content display is not a part of this project.\n\n\nIf you are looking into displaying Steem blockchain posts, you may use another project of mine, \nLightRPC\n.",
-            "title": "0 - Introduction"
+            "title": "Home"
         },
         {
             "location": "/#introduction-steemconnect-php-sdk",
