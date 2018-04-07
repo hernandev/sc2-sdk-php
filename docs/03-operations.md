@@ -238,3 +238,153 @@ $reblog->reblog('utopian-io', 'utopian-io-reborn-smarter-simpler-better');
 // broadcast the operation to Steem through SteemConnect.
 $response = $sdk->broadcast($reblog);
 ```
+
+### Post & Comment.
+
+On the Steem blockchain, a post is actually a comment. It means, that a Post is just a comment, without a parent.
+
+But, since there is no parent on a post, we need to set the parent permlink, that one will be used as the category
+for the post.
+
+The example will make it a little bit easier to understand:
+
+#### Post Example:
+
+``` php
+<?php
+
+// ...
+
+// alias classes:
+use SteemConnect\Operations\Comment;
+
+// create the operation:
+$post = new Comment();
+// set the author of the post.
+$post->author('hernandev');
+$post->category('introduceyourself');
+// set the post title.
+$post->title('Hello, this is Diego, but you can callme @hernandev');
+// set the post body.
+$post->body('You may insert the post content here, markdown is advised');
+// optionally, you may set tags on the post:
+$post->tags(['life', 'steem', 'steemdev']);
+
+// broadcast the operation to Steem through SteemConnect.
+$response = $sdk->broadcast($post);
+```
+
+Wait, what about the post URL?
+
+The post URL is automatically extract from the title, using an internal slug function.
+
+On the example, the title of the post was:
+
+`Hello, this is Diego, but you can callme @hernandev`
+
+The SDK will translate the title into a URL friendly slug:
+ 
+`hello-this-is-diego-but-you-can-callme-at-hernandev`
+
+But, if you want to customize the URL (which on Steem, is called `permlink`), you can do that by calling:
+
+``` php
+<?php
+
+// ...
+
+$post->permlink('this-is-a-custom-permlink-url-for-the-post');
+```
+
+The permlink does not need to match the title, the only rule here is that one author may not use the same permlink twice,
+since that's the unique identifier for a post.
+
+#### Comment / Reply Example:
+
+To comment or reply on a given post, is also very simple:
+
+On the example, we are going to reply to the post we just created on the previous example.
+
+``` php
+<?php
+
+// ...
+
+// alias classes:
+use SteemConnect\Operations\Comment;
+
+// create the operation:
+$comment = new Comment();
+// set the author of the post.
+$comment->author('hernandev');
+// set the parent post, you are replying to.
+$comment->reply('hernandev', 'hello-this-is-diego-but-you-can-callme-at-hernandev');
+// set the post body.
+$post->body('You may insert the post content here, markdown is advised');
+// optionally, you may set tags on the post:
+$post->tags(['life', 'steem', 'steemdev']);
+
+// broadcast the operation to Steem through SteemConnect.
+$response = $sdk->broadcast($post);
+```
+
+Just as the post, a reply will have the permlink automatically filled from the body content, if you want to customize
+the permlink, you can do the same you did for posts, by calling the `permlink()` method.
+
+### Comment Options.
+
+One important thing about comments, is that there are special options, like beneficiares, 50% SBD or 100% SP, etc.
+
+Those special options are not a part of the comment operation itself. Instead those options must be set on a special
+operation called **`comment_options`**.
+
+!!! warning
+    While is not required for a `comment` to have a `comment_options` operation, when they do, both operations **MUST**
+    be broadcast at the same time, since they must be part of the same transaction.
+    
+#### Comment With Comment Options Example:
+
+Here is an example, that creates a post, with options and broadcast the operations at the same time:
+
+``` php
+<?php
+
+// ...
+
+// alias classes:
+use SteemConnect\Operations\Comment;
+use SteemConnect\Operations\CommentOptions;
+
+// create the operation:
+$post = new Comment();
+// set the author of the post.
+$post->author('hernandev');
+// set the category.
+$post->category('testing');
+// set the parent post, you are replying to.
+$post->title('This is an example comment');
+// set the post body.
+$post->body('Hello dear Steemians...');
+// optionally, you may set tags on the post:
+$post->tags(['life', 'steem', 'steemdev']);
+
+
+// create the comment options operation:
+$options = new CommentOptions();
+// now, we set the post that will own the options.
+// this is where we link the two operations.
+$options->of($post);
+// you may disable votes.
+$options->allowVotes(false);
+// you may disable curation rewards.
+$options->allowCurationRewards(false);
+// don't wanna earn form your post, customize the max payout value.
+$options->maxAcceptedPayout(0);
+// set you only want 50% of the 50% SBD payout.
+// for a 100% SP payout, set this value as 0 (zero).
+$options->percentSteemDollars(5000);
+
+
+// now, broadcast both operations at once.
+$response = $sdk->broadcast($post, $options);
+```
