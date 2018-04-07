@@ -290,10 +290,15 @@ class Transaction implements Arrayable
      */
     public function setOperations(Collection $operations): self
     {
-        $this->parseOperations($operations)->map(function (Operation $operation) {
+        // parse the operations.
+        $parsedOperations = $this->parseOperations($operations);
+
+        // map the operations.
+        $parsedOperations->map(function (Operation $operation) {
             $this->operations->push($operation);
         });
 
+        // fluent return.
         return $this;
     }
 
@@ -387,19 +392,24 @@ class Transaction implements Arrayable
      */
     public function toArray()
     {
-        return [
-            'result' => [
-                'id' => $this->id,
-                'block_num' => $this->blockNumber,
-                'trx_num' => $this->transactionNumber,
-                'expired' => $this->expired,
-                'ref_block_num' => $this->referenceBlockNumber,
-                'ref_block_prefix' => $this->referenceBlockPrefix,
-                'expiration' => $this->expiration ? $this->expiration->format('Y-m-d\TH:i:s') : null,
-                'operations' => $this->operations->toArray(),
-                'extensions' => $this->extensions->toArray(),
-                'signatures' => $this->signatures->toArray(),
-            ]
+        // create the transaction data array.
+        $data = [
+            'id' => $this->id,
+            'block_num' => $this->blockNumber,
+            'trx_num' => $this->transactionNumber,
+            'expired' => $this->expired,
+            'ref_block_num' => $this->referenceBlockNumber,
+            'ref_block_prefix' => $this->referenceBlockPrefix,
+            'expiration' => $this->expiration ? $this->expiration->format('Y-m-d\TH:i:s') : null,
+            'operations' => $this->operations->toArray(),
+            'extensions' => $this->extensions->toArray(),
+            'signatures' => $this->signatures->toArray(),
         ];
+
+        // sort the transaction data by its keys/
+        ksort($data);
+
+        // return the result array
+        return [ 'result' => $data ];
     }
 }
