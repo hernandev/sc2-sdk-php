@@ -1,0 +1,31 @@
+site_name: SteemConnect SDK for PHP
+theme:
+  name: 'material'
+  logo: 'img/sc-logo.svg'
+  font:
+      text: 'Roboto'
+      code: 'Roboto Mono'
+repo_name: 'hernandev/sc2-sdk-php'
+repo_url: 'https://github.com/hernandev/sc2-sdk-php'
+
+extra_css:
+  - 'css/extra.css'
+extra:
+  social:
+    - type: 'github'
+      link: 'https://github.com/hernandev'
+    - type: 'twitter'
+      link: 'https://twitter.com/_hernandev'
+    - type: 'linkedin'
+      link: 'https://linkedin.com/in/hernandev'
+# Extensions
+markdown_extensions:
+  - admonition
+  - codehilite:
+      linenums: true
+      guess_lang: true
+  - toc:
+      permalink: true
+pages:
+  - Home: index.md
+  - Configuration: 01-configuration.md
