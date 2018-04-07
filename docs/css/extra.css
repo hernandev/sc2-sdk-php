@@ -1,0 +1,19 @@
+/*[data-md-color-primary=indigo] .md-header, [data-md-color-primary=indigo] .md-hero {*/
+  /*background: #6082bb;*/
+/*}*/
+
+/*.md-header {*/
+  /*background: #6082bb;*/
+/*}*/
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto+Mono:400,500|Roboto:300,400,500,700');
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+  font-weight: 600;
+  font-family: "Roboto Condensed", serif;
+}
