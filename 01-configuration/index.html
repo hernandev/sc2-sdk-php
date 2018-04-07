@@ -36,7 +36,7 @@
     
     
       
-        <title>Authentication - SteemConnect SDK for PHP</title>
+        <title>Configuration - SteemConnect SDK for PHP</title>
       
     
     
@@ -57,7 +57,7 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     
     
-      <link rel="stylesheet" href="../extra.css">
+      <link rel="stylesheet" href="../css/extra.css">
     
     
   </head>
@@ -95,7 +95,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#authentication" tabindex="1" class="md-skip">
+      <a href="#configuration" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -106,7 +106,7 @@
       <div class="md-flex__cell md-flex__cell--shrink">
         <a href=".." title="SteemConnect SDK for PHP" class="md-header-nav__button md-logo">
           
-            <img src="../sc-php-logo.svg" width="24" height="24">
+            <img src="../img/sc-logo.svg" width="24" height="24">
           
         </a>
       </div>
@@ -121,7 +121,7 @@
                 SteemConnect SDK for PHP
               </span>
               <span class="md-header-nav__topic">
-                Authentication
+                Configuration
               </span>
             
           
@@ -202,7 +202,7 @@
   <label class="md-nav__title md-nav__title--site" for="drawer">
     <span class="md-nav__button md-logo">
       
-        <img src="../sc-php-logo.svg" width="48" height="48">
+        <img src="../img/sc-logo.svg" width="48" height="48">
       
     </span>
     SteemConnect SDK for PHP
@@ -258,9 +258,38 @@
       
     
     
-    <a href="./" title="Authentication" class="md-nav__link md-nav__link--active">
-      Authentication
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Configuration
+      </label>
+    
+    <a href="./" title="Configuration" class="md-nav__link md-nav__link--active">
+      Configuration
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-class" title="Configuration Class." class="md-nav__link">
+    Configuration Class.
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -282,6 +311,22 @@
     
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-class" title="Configuration Class." class="md-nav__link">
+    Configuration Class.
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -292,11 +337,22 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/hernandev/sc2-sdk-php/edit/master/docs/01-authentication.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/hernandev/sc2-sdk-php/edit/master/docs/01-configuration.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="authentication">Authentication</h1>
-<p>This is auth part.</p>
+                <h1 id="configuration">Configuration</h1>
+<p>Before heading into SDK usage, we need to configure it, with credentials, return url and scopes.</p>
+<h2 id="configuration-class">Configuration Class.</h2>
+<p>To start, we are going to create an instance of <code>SteemConnect\Config\Config</code>.</p>
+<pre><code class="php">&lt;?php
+
+use SteemConnect\Config\Config;
+
+$clientId = 'your-steem-connect-client-id';
+$clientSecret = 'your-steem-connect-client-secret';
+
+$config = new Config($clientId, $clientSecret);
+</code></pre>
                 
                   
                 
