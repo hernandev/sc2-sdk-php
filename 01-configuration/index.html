@@ -298,6 +298,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#application-and-community-name" title="Application and Community Name." class="md-nav__link">
+    Application and Community Name.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-steemconnect-servers" title="Custom SteemConnect Servers." class="md-nav__link">
+    Custom SteemConnect Servers.
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -352,6 +366,20 @@
           <li class="md-nav__item">
   <a href="#scopes" title="Scopes." class="md-nav__link">
     Scopes.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-and-community-name" title="Application and Community Name." class="md-nav__link">
+    Application and Community Name.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-steemconnect-servers" title="Custom SteemConnect Servers." class="md-nav__link">
+    Custom SteemConnect Servers.
   </a>
   
 </li>
@@ -501,6 +529,58 @@ to act on the their behalf.</p>
 <span class="p">]);</span>
 </pre></div>
 </td></tr></table>
+
+<h3 id="application-and-community-name">Application and Community Name.<a class="headerlink" href="#application-and-community-name" title="Permanent link">&para;</a></h3>
+<p>An optional but interesting feature, is to configure both the application and community names. Those are used to indicate
+what application was used to make the post, and some frontend will display that information.</p>
+<p>If you don't know what I'm talking about, here is an example:</p>
+<p><img alt="app name example" src="https://ipfs.io/ipfs/Qmcesk7EDVRr1t1kgD7P4AfsycZcka7gafvNpMnKdq3APi" /></p>
+<p>The syntax for application name, as of right now, is <strong><code>lowercase-app-name/version</code></strong>, here's an example:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// set the application name and version.</span>
+<span class="nv">$config</span><span class="o">-&gt;</span><span class="na">setApp</span><span class="p">(</span><span class="s1">&#39;coolapp/2.4&#39;</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>The same way, it's possible to set the community name:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// set the community name.</span>
+<span class="nv">$config</span><span class="o">-&gt;</span><span class="na">setCommunity</span><span class="p">(</span><span class="s1">&#39;CoolApp&#39;</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="custom-steemconnect-servers">Custom SteemConnect Servers.<a class="headerlink" href="#custom-steemconnect-servers" title="Permanent link">&para;</a></h3>
+<p>If for some reason, you are using a custom install of SteemConnect (a development install, for example), you may
+change the base URL so all calls will use that domain.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// customize the SteemConnect address.</span>
+<span class="nv">$config</span><span class="o">-&gt;</span><span class="na">setBaseUrl</span><span class="p">(</span><span class="s1">&#39;https://my-custom-steemconnect.com&#39;</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
                 
                   
                 
@@ -553,11 +633,11 @@ to act on the their behalf.</p>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-      <a href="https://github.com/squidfunk" class="md-footer-social__link fa fa-github"></a>
+      <a href="https://github.com/hernandev" class="md-footer-social__link fa fa-github"></a>
     
-      <a href="https://twitter.com/squidfunk" class="md-footer-social__link fa fa-twitter"></a>
+      <a href="https://twitter.com/_hernandev" class="md-footer-social__link fa fa-twitter"></a>
     
-      <a href="https://linkedin.com/in/squidfunk" class="md-footer-social__link fa fa-linkedin"></a>
+      <a href="https://linkedin.com/in/hernandev" class="md-footer-social__link fa fa-linkedin"></a>
     
   </div>
 
