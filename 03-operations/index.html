@@ -372,6 +372,60 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#reblog" title="Reblog." class="md-nav__link">
+    Reblog.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-comment" title="Post &amp; Comment." class="md-nav__link">
+    Post &amp; Comment.
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-example" title="Post Example:" class="md-nav__link">
+    Post Example:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comment-reply-example" title="Comment / Reply Example:" class="md-nav__link">
+    Comment / Reply Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comment-options" title="Comment Options." class="md-nav__link">
+    Comment Options.
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comment-with-comment-options-example" title="Comment With Comment Options Example:" class="md-nav__link">
+    Comment With Comment Options Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -475,6 +529,60 @@
           <li class="md-nav__item">
   <a href="#unfollow-example" title="UnFollow Example:" class="md-nav__link">
     UnFollow Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reblog" title="Reblog." class="md-nav__link">
+    Reblog.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-comment" title="Post &amp; Comment." class="md-nav__link">
+    Post &amp; Comment.
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-example" title="Post Example:" class="md-nav__link">
+    Post Example:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comment-reply-example" title="Comment / Reply Example:" class="md-nav__link">
+    Comment / Reply Example:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comment-options" title="Comment Options." class="md-nav__link">
+    Comment Options.
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comment-with-comment-options-example" title="Comment With Comment Options Example:" class="md-nav__link">
+    Comment With Comment Options Example:
   </a>
   
 </li>
@@ -774,6 +882,255 @@ inside it called <strong><code>what</code></strong>.</p>
 
 <span class="c1">// broadcast the operation to Steem through SteemConnect.</span>
 <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$sdk</span><span class="o">-&gt;</span><span class="na">broadcast</span><span class="p">(</span><span class="nv">$follow</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="reblog">Reblog.<a class="headerlink" href="#reblog" title="Permanent link">&para;</a></h3>
+<p>Reblog is a simple operation, all you need to do is:</p>
+<p>On the example, the user <strong><code>@hernandev</code></strong> is reblogging the post 
+<a href="https://busy.org/@utopian-io/utopian-io-reborn-smarter-simpler-better">https://steemit.com/@utopian-io/utopian-io-reborn-smarter-simpler-better</a></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// alias classes:</span>
+<span class="k">use</span> <span class="nx">SteemConnect\Operations\Reblog</span><span class="p">;</span>
+
+<span class="c1">// create the operation:</span>
+<span class="nv">$reblog</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Reblog</span><span class="p">();</span>
+<span class="c1">// set the user that will reblog.</span>
+<span class="nv">$reblog</span><span class="o">-&gt;</span><span class="na">account</span><span class="p">(</span><span class="s1">&#39;hernandev&#39;</span><span class="p">);</span>
+<span class="c1">// reblog a given post.</span>
+<span class="nv">$reblog</span><span class="o">-&gt;</span><span class="na">reblog</span><span class="p">(</span><span class="s1">&#39;utopian-io&#39;</span><span class="p">,</span> <span class="s1">&#39;utopian-io-reborn-smarter-simpler-better&#39;</span><span class="p">);</span>
+
+<span class="c1">// broadcast the operation to Steem through SteemConnect.</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$sdk</span><span class="o">-&gt;</span><span class="na">broadcast</span><span class="p">(</span><span class="nv">$reblog</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="post-comment">Post &amp; Comment.<a class="headerlink" href="#post-comment" title="Permanent link">&para;</a></h3>
+<p>On the Steem blockchain, a post is actually a comment. It means, that a Post is just a comment, without a parent.</p>
+<p>But, since there is no parent on a post, we need to set the parent permlink, that one will be used as the category
+for the post.</p>
+<p>The example will make it a little bit easier to understand:</p>
+<h4 id="post-example">Post Example:<a class="headerlink" href="#post-example" title="Permanent link">&para;</a></h4>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// alias classes:</span>
+<span class="k">use</span> <span class="nx">SteemConnect\Operations\Comment</span><span class="p">;</span>
+
+<span class="c1">// create the operation:</span>
+<span class="nv">$post</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Comment</span><span class="p">();</span>
+<span class="c1">// set the author of the post.</span>
+<span class="nv">$post</span><span class="o">-&gt;</span><span class="na">author</span><span class="p">(</span><span class="s1">&#39;hernandev&#39;</span><span class="p">);</span>
+<span class="nv">$post</span><span class="o">-&gt;</span><span class="na">category</span><span class="p">(</span><span class="s1">&#39;introduceyourself&#39;</span><span class="p">);</span>
+<span class="c1">// set the post title.</span>
+<span class="nv">$post</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">(</span><span class="s1">&#39;Hello, this is Diego, but you can callme @hernandev&#39;</span><span class="p">);</span>
+<span class="c1">// set the post body.</span>
+<span class="nv">$post</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">(</span><span class="s1">&#39;You may insert the post content here, markdown is advised&#39;</span><span class="p">);</span>
+<span class="c1">// optionally, you may set tags on the post:</span>
+<span class="nv">$post</span><span class="o">-&gt;</span><span class="na">tags</span><span class="p">([</span><span class="s1">&#39;life&#39;</span><span class="p">,</span> <span class="s1">&#39;steem&#39;</span><span class="p">,</span> <span class="s1">&#39;steemdev&#39;</span><span class="p">]);</span>
+
+<span class="c1">// broadcast the operation to Steem through SteemConnect.</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$sdk</span><span class="o">-&gt;</span><span class="na">broadcast</span><span class="p">(</span><span class="nv">$post</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>Wait, what about the post URL?</p>
+<p>The post URL is automatically extract from the title, using an internal slug function.</p>
+<p>On the example, the title of the post was:</p>
+<p><code>Hello, this is Diego, but you can callme @hernandev</code></p>
+<p>The SDK will translate the title into a URL friendly slug:</p>
+<p><code>hello-this-is-diego-but-you-can-callme-at-hernandev</code></p>
+<p>But, if you want to customize the URL (which on Steem, is called <code>permlink</code>), you can do that by calling:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+<span class="nv">$post</span><span class="o">-&gt;</span><span class="na">permlink</span><span class="p">(</span><span class="s1">&#39;this-is-a-custom-permlink-url-for-the-post&#39;</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>The permlink does not need to match the title, the only rule here is that one author may not use the same permlink twice,
+since that's the unique identifier for a post.</p>
+<h4 id="comment-reply-example">Comment / Reply Example:<a class="headerlink" href="#comment-reply-example" title="Permanent link">&para;</a></h4>
+<p>To comment or reply on a given post, is also very simple:</p>
+<p>On the example, we are going to reply to the post we just created on the previous example.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// alias classes:</span>
+<span class="k">use</span> <span class="nx">SteemConnect\Operations\Comment</span><span class="p">;</span>
+
+<span class="c1">// create the operation:</span>
+<span class="nv">$comment</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Comment</span><span class="p">();</span>
+<span class="c1">// set the author of the post.</span>
+<span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">author</span><span class="p">(</span><span class="s1">&#39;hernandev&#39;</span><span class="p">);</span>
+<span class="c1">// set the parent post, you are replying to.</span>
+<span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">reply</span><span class="p">(</span><span class="s1">&#39;hernandev&#39;</span><span class="p">,</span> <span class="s1">&#39;hello-this-is-diego-but-you-can-callme-at-hernandev&#39;</span><span class="p">);</span>
+<span class="c1">// set the post body.</span>
+<span class="nv">$post</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">(</span><span class="s1">&#39;You may insert the post content here, markdown is advised&#39;</span><span class="p">);</span>
+<span class="c1">// optionally, you may set tags on the post:</span>
+<span class="nv">$post</span><span class="o">-&gt;</span><span class="na">tags</span><span class="p">([</span><span class="s1">&#39;life&#39;</span><span class="p">,</span> <span class="s1">&#39;steem&#39;</span><span class="p">,</span> <span class="s1">&#39;steemdev&#39;</span><span class="p">]);</span>
+
+<span class="c1">// broadcast the operation to Steem through SteemConnect.</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$sdk</span><span class="o">-&gt;</span><span class="na">broadcast</span><span class="p">(</span><span class="nv">$post</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>Just as the post, a reply will have the permlink automatically filled from the body content, if you want to customize
+the permlink, you can do the same you did for posts, by calling the <code>permlink()</code> method.</p>
+<h3 id="comment-options">Comment Options.<a class="headerlink" href="#comment-options" title="Permanent link">&para;</a></h3>
+<p>One important thing about comments, is that there are special options, like beneficiares, 50% SBD or 100% SP, etc.</p>
+<p>Those special options are not a part of the comment operation itself. Instead those options must be set on a special
+operation called <strong><code>comment_options</code></strong>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>While is not required for a <code>comment</code> to have a <code>comment_options</code> operation, when they do, both operations <strong>MUST</strong>
+be broadcast at the same time, since they must be part of the same transaction.</p>
+</div>
+<h4 id="comment-with-comment-options-example">Comment With Comment Options Example:<a class="headerlink" href="#comment-with-comment-options-example" title="Permanent link">&para;</a></h4>
+<p>Here is an example, that creates a post, with options and broadcast the operations at the same time:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// alias classes:</span>
+<span class="k">use</span> <span class="nx">SteemConnect\Operations\Comment</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">SteemConnect\Operations\CommentOptions</span><span class="p">;</span>
+
+<span class="c1">// create the operation:</span>
+<span class="nv">$post</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Comment</span><span class="p">();</span>
+<span class="c1">// set the author of the post.</span>
+<span class="nv">$post</span><span class="o">-&gt;</span><span class="na">author</span><span class="p">(</span><span class="s1">&#39;hernandev&#39;</span><span class="p">);</span>
+<span class="c1">// set the category.</span>
+<span class="nv">$post</span><span class="o">-&gt;</span><span class="na">category</span><span class="p">(</span><span class="s1">&#39;testing&#39;</span><span class="p">);</span>
+<span class="c1">// set the parent post, you are replying to.</span>
+<span class="nv">$post</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">(</span><span class="s1">&#39;This is an example comment&#39;</span><span class="p">);</span>
+<span class="c1">// set the post body.</span>
+<span class="nv">$post</span><span class="o">-&gt;</span><span class="na">body</span><span class="p">(</span><span class="s1">&#39;Hello dear Steemians...&#39;</span><span class="p">);</span>
+<span class="c1">// optionally, you may set tags on the post:</span>
+<span class="nv">$post</span><span class="o">-&gt;</span><span class="na">tags</span><span class="p">([</span><span class="s1">&#39;life&#39;</span><span class="p">,</span> <span class="s1">&#39;steem&#39;</span><span class="p">,</span> <span class="s1">&#39;steemdev&#39;</span><span class="p">]);</span>
+
+
+<span class="c1">// create the comment options operation:</span>
+<span class="nv">$options</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CommentOptions</span><span class="p">();</span>
+<span class="c1">// now, we set the post that will own the options.</span>
+<span class="c1">// this is where we link the two operations.</span>
+<span class="nv">$options</span><span class="o">-&gt;</span><span class="na">of</span><span class="p">(</span><span class="nv">$post</span><span class="p">);</span>
+<span class="c1">// you may disable votes.</span>
+<span class="nv">$options</span><span class="o">-&gt;</span><span class="na">allowVotes</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+<span class="c1">// you may disable curation rewards.</span>
+<span class="nv">$options</span><span class="o">-&gt;</span><span class="na">allowCurationRewards</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+<span class="c1">// don&#39;t wanna earn form your post, customize the max payout value.</span>
+<span class="nv">$options</span><span class="o">-&gt;</span><span class="na">maxAcceptedPayout</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="c1">// set you only want 50% of the 50% SBD payout.</span>
+<span class="c1">// for a 100% SP payout, set this value as 0 (zero).</span>
+<span class="nv">$options</span><span class="o">-&gt;</span><span class="na">percentSteemDollars</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span>
+
+
+<span class="c1">// now, broadcast both operations at once.</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$sdk</span><span class="o">-&gt;</span><span class="na">broadcast</span><span class="p">(</span><span class="nv">$post</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
                 
