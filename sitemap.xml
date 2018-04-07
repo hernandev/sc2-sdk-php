@@ -17,4 +17,20 @@
     </url>
     
 
+    
+    <url>
+     <loc>/02-authentication/</loc>
+     <lastmod>2018-04-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/03-operations/</loc>
+     <lastmod>2018-04-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
 </urlset>

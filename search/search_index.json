@@ -69,6 +69,66 @@
             "location": "/01-configuration/#custom-steemconnect-servers",
             "text": "If for some reason, you are using a custom install of SteemConnect (a development install, for example), you may\nchange the base URL so all calls will use that domain.  1\n2\n3\n4\n5\n6 <?php  // ...  // customize the SteemConnect address.  $config -> setBaseUrl ( 'https://my-custom-steemconnect.com' );",
             "title": "Custom SteemConnect Servers."
+        },
+        {
+            "location": "/02-authentication/",
+            "text": "Authentication\n\u00b6\n\n\nThis library wraps all authentication functionality built on \noauth2-sc2\n, if you are using the SDK, there's no need for separate authentication configuration, since all logic is wrapped on the SDK.\n\n\nBefore Authentication.\n\u00b6\n\n\nBefore we head into the actual authentication, we must have a SDK client instance.\n\n\nThe class that handle all SDK features is \nSteemConnect\\Client\\Client\n and for the examples on this section, we will create one instance and name the variable \n$sdk\n:\n\n\nAlso, we are assuming, you have the \n$config\n variable from the configuration section available.\n\n\n 1\n 2\n 3\n 4\n 5\n 6\n 7\n 8\n 9\n10\n<?php\n\n\n\n// ...\n\n\n\n// alias the client.\n\n\nuse\n \nSteemConnect\\Client\\Client\n;\n\n\n\n// create a sdk client instance, using the\n\n\n// config instance we previously created.\n\n\n$sdk\n \n=\n \nnew\n \nClient\n(\n$config\n);\n\n\n\n\n\n\n\nThe OAuth Flow.\n\u00b6\n\n\nThose those who are not so familiar with OAuth, the basic flow is this:\n\n\n\n\nApplication redirects the user the the OAuth Provider, in this case, SteemConnect.\n\n\nThe user, grants, on the SteemConnect page, the permissions so your application can act on the user behalf.\n\n\nAfter the authorization, the provider, in this case SteemConnect, will redirect the user back to your application, with a temporary code that will be exchanged with an access token.\n\n\n\n\nAll of those steps are wrapped by the SDK.\n\n\nThis means, that you only need to do two SDK calls in order to authenticate and get authorization from users.\n\n\nRedirecting To SteemConnect.\n\u00b6\n\n\nWhen the users access your application, you will need to do a redirect to SteemConnect.\n\n\nNow, using the SDK we can build the URL used to redirect the users to:\n\n\n1\n2\n3\n4\n5\n6\n<?php\n\n\n\n// ...\n\n\n\n// get the authorization URL.\n\n\n$authorizationURL\n \n=\n \n$sdk\n->\nauth\n()\n->\ngetAuthorizationUrl\n();\n\n\n\n\n\n\n\nNow, you can actually redirect the user to that URL. Be free to use any method you want.\n\n\n 1\n 2\n 3\n 4\n 5\n 6\n 7\n 8\n 9\n10\n11\n<?php\n\n\n\n// ...\n\n\n\n\n// using pure PHP:\n\n\nheader\n(\n\"Location: \n{\n$authorizationURL\n}\n\"\n);\n\n\n\n\n// using Laravel inside a controller:\n\n\nreturn\n \nredirect\n(\n$authorizationURL\n);\n\n\n\n\n\n\n\nBy doing that for the first time, your users will be faced with the following authorization page:\n\n\n\n\n\n\nNote\n\n\nNotice on this example, the application requesting permission is \nBusy.org\n. Both the logo and application name will change on your own applications, and can be customized through SteemConnect dashboard.\n\n\n\n\n\n\nNote\n\n\nAlso, the scopes required may change by your own requirements, be sure to read all and request only the ones you actually need. Avoid having more powers over your users accounts than you actually need.\n\n\n\n\nHandling the Return.\n\u00b6\n\n\nIn some places referred to as \ncallback\n, the return from an authorization flow is just the practice of exchanging the temporary grant code\nwith a real access token, that is required to operate your users accounts after the authorization.\n\n\nThe SDK also abstracts all that parsing, so you only need to do one call at callback phase.\n\n\n1\n2\n3\n4\n5\n6\n7\n<?php\n\n\n\n// ...\n\n\n\n\n// exchanging the authorization code by a access token.\n\n\n$token\n \n=\n \n$sdk\n->\nauth\n()\n->\nparseReturn\n();\n\n\n\n\n\n\n\nThe token returned on the callback / return page is an instance of \nSteemConnect\\Auth\\Token\n, which we will discuss on the next section.\n\n\nStoring and Using Access Tokens.\n\u00b6\n\n\nEach access token is specific to a given user. Meaning when you need to the access token every time you need to broadcast an operation\nto the Steem blockchain.\n\n\nSince the tokens as an instance of \nSteemConnect\\Auth\\Token\n, it's easy to serialize and factory it's instance:\n\n\nSerialization for Storage:\n\u00b6\n\n\nWhen you have a \nToken\n instance, and you need to store it, you can transform the token into a JSON string by doing:\n\n\n1\n2\n3\n4\n5\n6\n<?php\n\n\n\n// ...\n\n\n\n// create a json representation of the token for storage.\n\n\n$tokenJson\n \n=\n \njson_encode\n(\n$token\n);\n\n\n\n\n\n\n\nParsing Stored Tokens.\n\u00b6\n\n\nNow, on a late time, when a given user returns to your application, you can just factory the token instance back:\n\n\n1\n2\n3\n4\n5\n6\n7\n8\n9\n<?php\n\n\n\n// ...\n\n\n\nuse\n \nSteemConnect\\Auth\\Token\n;\n\n\n\n// the fromJsonString method will decode \n\n\n// the token json string into a token instance.\n\n\n$token\n \n=\n \nToken\n::\nfromJsonString\n(\n$tokenJson\n);\n\n\n\n\n\n\n\nUsing Tokens.\n\u00b6\n\n\nSince all operations needs to be authenticated, the SDK requires a \nToken\n instance to work.\n\n\nTo configure the access token on the SDK, all you need to do is:\n\n\n1\n2\n3\n4\n5\n6\n7\n<?php\n\n\n\n// ...\n\n\n\n// set the token instance on the SDK, \n\n\n// so operations can be authenticated.\n\n\n$sdk\n->\nsetToken\n(\n$token\n);",
+            "title": "Authentication"
+        },
+        {
+            "location": "/02-authentication/#authentication",
+            "text": "This library wraps all authentication functionality built on  oauth2-sc2 , if you are using the SDK, there's no need for separate authentication configuration, since all logic is wrapped on the SDK.",
+            "title": "Authentication"
+        },
+        {
+            "location": "/02-authentication/#before-authentication",
+            "text": "Before we head into the actual authentication, we must have a SDK client instance.  The class that handle all SDK features is  SteemConnect\\Client\\Client  and for the examples on this section, we will create one instance and name the variable  $sdk :  Also, we are assuming, you have the  $config  variable from the configuration section available.   1\n 2\n 3\n 4\n 5\n 6\n 7\n 8\n 9\n10 <?php  // ...  // alias the client.  use   SteemConnect\\Client\\Client ;  // create a sdk client instance, using the  // config instance we previously created.  $sdk   =   new   Client ( $config );",
+            "title": "Before Authentication."
+        },
+        {
+            "location": "/02-authentication/#the-oauth-flow",
+            "text": "Those those who are not so familiar with OAuth, the basic flow is this:   Application redirects the user the the OAuth Provider, in this case, SteemConnect.  The user, grants, on the SteemConnect page, the permissions so your application can act on the user behalf.  After the authorization, the provider, in this case SteemConnect, will redirect the user back to your application, with a temporary code that will be exchanged with an access token.   All of those steps are wrapped by the SDK.  This means, that you only need to do two SDK calls in order to authenticate and get authorization from users.",
+            "title": "The OAuth Flow."
+        },
+        {
+            "location": "/02-authentication/#redirecting-to-steemconnect",
+            "text": "When the users access your application, you will need to do a redirect to SteemConnect.  Now, using the SDK we can build the URL used to redirect the users to:  1\n2\n3\n4\n5\n6 <?php  // ...  // get the authorization URL.  $authorizationURL   =   $sdk -> auth () -> getAuthorizationUrl ();    Now, you can actually redirect the user to that URL. Be free to use any method you want.   1\n 2\n 3\n 4\n 5\n 6\n 7\n 8\n 9\n10\n11 <?php  // ...  // using pure PHP:  header ( \"Location:  { $authorizationURL } \" );  // using Laravel inside a controller:  return   redirect ( $authorizationURL );    By doing that for the first time, your users will be faced with the following authorization page:    Note  Notice on this example, the application requesting permission is  Busy.org . Both the logo and application name will change on your own applications, and can be customized through SteemConnect dashboard.    Note  Also, the scopes required may change by your own requirements, be sure to read all and request only the ones you actually need. Avoid having more powers over your users accounts than you actually need.",
+            "title": "Redirecting To SteemConnect."
+        },
+        {
+            "location": "/02-authentication/#handling-the-return",
+            "text": "In some places referred to as  callback , the return from an authorization flow is just the practice of exchanging the temporary grant code\nwith a real access token, that is required to operate your users accounts after the authorization.  The SDK also abstracts all that parsing, so you only need to do one call at callback phase.  1\n2\n3\n4\n5\n6\n7 <?php  // ...  // exchanging the authorization code by a access token.  $token   =   $sdk -> auth () -> parseReturn ();    The token returned on the callback / return page is an instance of  SteemConnect\\Auth\\Token , which we will discuss on the next section.",
+            "title": "Handling the Return."
+        },
+        {
+            "location": "/02-authentication/#storing-and-using-access-tokens",
+            "text": "Each access token is specific to a given user. Meaning when you need to the access token every time you need to broadcast an operation\nto the Steem blockchain.  Since the tokens as an instance of  SteemConnect\\Auth\\Token , it's easy to serialize and factory it's instance:",
+            "title": "Storing and Using Access Tokens."
+        },
+        {
+            "location": "/02-authentication/#serialization-for-storage",
+            "text": "When you have a  Token  instance, and you need to store it, you can transform the token into a JSON string by doing:  1\n2\n3\n4\n5\n6 <?php  // ...  // create a json representation of the token for storage.  $tokenJson   =   json_encode ( $token );",
+            "title": "Serialization for Storage:"
+        },
+        {
+            "location": "/02-authentication/#parsing-stored-tokens",
+            "text": "Now, on a late time, when a given user returns to your application, you can just factory the token instance back:  1\n2\n3\n4\n5\n6\n7\n8\n9 <?php  // ...  use   SteemConnect\\Auth\\Token ;  // the fromJsonString method will decode   // the token json string into a token instance.  $token   =   Token :: fromJsonString ( $tokenJson );",
+            "title": "Parsing Stored Tokens."
+        },
+        {
+            "location": "/02-authentication/#using-tokens",
+            "text": "Since all operations needs to be authenticated, the SDK requires a  Token  instance to work.  To configure the access token on the SDK, all you need to do is:  1\n2\n3\n4\n5\n6\n7 <?php  // ...  // set the token instance on the SDK,   // so operations can be authenticated.  $sdk -> setToken ( $token );",
+            "title": "Using Tokens."
+        },
+        {
+            "location": "/03-operations/",
+            "text": "Broadcasting Operations\n\u00b6\n\n\nConsidering the users are",
+            "title": "Operations"
+        },
+        {
+            "location": "/03-operations/#broadcasting-operations",
+            "text": "Considering the users are",
+            "title": "Broadcasting Operations"
         }
     ]
 }

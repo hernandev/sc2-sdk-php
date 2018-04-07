@@ -36,7 +36,7 @@
     
     
       
-        <title>Configuration - SteemConnect SDK for PHP</title>
+        <title>Authentication - SteemConnect SDK for PHP</title>
       
     
     
@@ -91,7 +91,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#configuration" tabindex="1" class="md-skip">
+      <a href="#authentication" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -117,7 +117,7 @@
                 SteemConnect SDK for PHP
               </span>
               <span class="md-header-nav__topic">
-                Configuration
+                Authentication
               </span>
             
           
@@ -244,6 +244,18 @@
       
       
 
+
+  <li class="md-nav__item">
+    <a href="../01-configuration/" title="Configuration" class="md-nav__link">
+      Configuration
+    </a>
+  </li>
+
+    
+      
+      
+      
+
   
 
 
@@ -255,11 +267,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="toc">
-        Configuration
+        Authentication
       </label>
     
-    <a href="./" title="Configuration" class="md-nav__link md-nav__link--active">
-      Configuration
+    <a href="./" title="Authentication" class="md-nav__link md-nav__link--active">
+      Authentication
     </a>
     
       
@@ -273,43 +285,64 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configuration-class" title="Configuration Class." class="md-nav__link">
-    Configuration Class.
+  <a href="#before-authentication" title="Before Authentication." class="md-nav__link">
+    Before Authentication.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-oauth-flow" title="The OAuth Flow." class="md-nav__link">
+    The OAuth Flow.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redirecting-to-steemconnect" title="Redirecting To SteemConnect." class="md-nav__link">
+    Redirecting To SteemConnect.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handling-the-return" title="Handling the Return." class="md-nav__link">
+    Handling the Return.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storing-and-using-access-tokens" title="Storing and Using Access Tokens." class="md-nav__link">
+    Storing and Using Access Tokens.
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#return-url" title="Return URL." class="md-nav__link">
-    Return URL.
+  <a href="#serialization-for-storage" title="Serialization for Storage:" class="md-nav__link">
+    Serialization for Storage:
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scopes" title="Scopes." class="md-nav__link">
-    Scopes.
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#application-and-community-name" title="Application and Community Name." class="md-nav__link">
-    Application and Community Name.
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#custom-steemconnect-servers" title="Custom SteemConnect Servers." class="md-nav__link">
-    Custom SteemConnect Servers.
+  <a href="#parsing-stored-tokens" title="Parsing Stored Tokens." class="md-nav__link">
+    Parsing Stored Tokens.
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-tokens" title="Using Tokens." class="md-nav__link">
+    Using Tokens.
+  </a>
   
 </li>
       
@@ -321,18 +354,6 @@
   
 </nav>
     
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../02-authentication/" title="Authentication" class="md-nav__link">
-      Authentication
-    </a>
   </li>
 
     
@@ -369,43 +390,64 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configuration-class" title="Configuration Class." class="md-nav__link">
-    Configuration Class.
+  <a href="#before-authentication" title="Before Authentication." class="md-nav__link">
+    Before Authentication.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-oauth-flow" title="The OAuth Flow." class="md-nav__link">
+    The OAuth Flow.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redirecting-to-steemconnect" title="Redirecting To SteemConnect." class="md-nav__link">
+    Redirecting To SteemConnect.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handling-the-return" title="Handling the Return." class="md-nav__link">
+    Handling the Return.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storing-and-using-access-tokens" title="Storing and Using Access Tokens." class="md-nav__link">
+    Storing and Using Access Tokens.
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#return-url" title="Return URL." class="md-nav__link">
-    Return URL.
+  <a href="#serialization-for-storage" title="Serialization for Storage:" class="md-nav__link">
+    Serialization for Storage:
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scopes" title="Scopes." class="md-nav__link">
-    Scopes.
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#application-and-community-name" title="Application and Community Name." class="md-nav__link">
-    Application and Community Name.
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#custom-steemconnect-servers" title="Custom SteemConnect Servers." class="md-nav__link">
-    Custom SteemConnect Servers.
+  <a href="#parsing-stored-tokens" title="Parsing Stored Tokens." class="md-nav__link">
+    Parsing Stored Tokens.
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-tokens" title="Using Tokens." class="md-nav__link">
+    Using Tokens.
+  </a>
   
 </li>
       
@@ -425,109 +467,15 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/hernandev/sc2-sdk-php/edit/master/docs/01-configuration.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/hernandev/sc2-sdk-php/edit/master/docs/02-authentication.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
-<p>Before heading into SDK usage, we need to configure it, with credentials, return url and scopes.</p>
-<h2 id="configuration-class">Configuration Class.<a class="headerlink" href="#configuration-class" title="Permanent link">&para;</a></h2>
-<p>To start, we are going to create an instance of <strong><code>SteemConnect\Config\Config</code></strong>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
-
-<span class="k">use</span> <span class="nx">SteemConnect\Config\Config</span><span class="p">;</span>
-
-<span class="c1">// the client id and secret can be obtained on SteemConnect dashboard.</span>
-<span class="nv">$clientId</span> <span class="o">=</span> <span class="s1">&#39;your-steem-connect-client-id&#39;</span><span class="p">;</span>
-<span class="nv">$clientSecret</span> <span class="o">=</span> <span class="s1">&#39;your-steem-connect-client-secret&#39;</span><span class="p">;</span>
-
-<span class="c1">// create the configuration instance, using  the credentials.</span>
-<span class="nv">$config</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Config</span><span class="p">(</span><span class="nv">$clientId</span><span class="p">,</span> <span class="nv">$clientSecret</span><span class="p">);</span>
-</pre></div>
-</td></tr></table>
-
-<h3 id="return-url">Return URL.<a class="headerlink" href="#return-url" title="Permanent link">&para;</a></h3>
-<p>The return URL is a parameter for the OAuth authorization flow. This URL will receive
-the temporary code from SteemConnect after the user authorizes your application
-to act on the their behalf.</p>
-<p>To configure the return URL, you just call the <strong><code>setReturnUrl</code></strong> method on the Config object:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
-
-<span class="c1">// ...</span>
-
-<span class="c1">// set the return URL on config.</span>
-<span class="nv">$config</span><span class="o">-&gt;</span><span class="na">setReturnUrl</span><span class="p">(</span><span class="s1">&#39;https://your-steem-app/auth/callback&#39;</span><span class="p">);</span>
-</pre></div>
-</td></tr></table>
-
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The URL being used on configuration must match the one configured on SteemConnect dashboard, otherwise the authorization flow will fail.</p>
-</div>
-<h3 id="scopes">Scopes.<a class="headerlink" href="#scopes" title="Permanent link">&para;</a></h3>
-<p>Other required configuration are which scopes your application requires.</p>
-<p>On the OAuth flow, a scope could be translated to which permissions your users will grant you.</p>
-<p>There are several scopes available. The list of scopes presented here may change with time, so, an up-to-date reference can fe found at <strong><a href="https://github.com/steemit/steemconnect/wiki/OAuth-2#scopes">SteemConnect wiki</a></strong>.</p>
-<table>
-<thead>
-<tr>
-<th>Scope</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>login</strong></td>
-<td>Verify Steem identity</td>
-</tr>
-<tr>
-<td><strong>offline</strong></td>
-<td>Allow long-lived token</td>
-</tr>
-<tr>
-<td><strong>vote</strong></td>
-<td>Upvote, downvote or unvote a post or comment</td>
-</tr>
-<tr>
-<td><strong>comment</strong></td>
-<td>Publish or edit a post or a comment</td>
-</tr>
-<tr>
-<td><strong>comment_delete</strong></td>
-<td>Delete a post or a comment</td>
-</tr>
-<tr>
-<td><strong>comment_options</strong></td>
-<td>Add options for a post or comment</td>
-</tr>
-<tr>
-<td><strong>custom_json</strong></td>
-<td>Follow, unfollow, ignore, reblog or any custom_json operation</td>
-</tr>
-<tr>
-<td><strong>claim_reward_balance</strong></td>
-<td>Claim reward for user</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If your application only needs to verify the user identity, the required scope <strong><code>login</code></strong> does not persist changes on the user account, so be sure to remember the user session to avoid the authorization dialog in every visit.</p>
-</div>
-<p>To configure the scopes your application will require, just call the <code>setScopes</code> method on the config object, passing those scopes as an array:</p>
+                <h1 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h1>
+<p>This library wraps all authentication functionality built on <strong><a href="https://github.com/hernandev/oauth2-sc2">oauth2-sc2</a></strong>, if you are using the SDK, there's no need for separate authentication configuration, since all logic is wrapped on the SDK.</p>
+<h2 id="before-authentication">Before Authentication.<a class="headerlink" href="#before-authentication" title="Permanent link">&para;</a></h2>
+<p>Before we head into the actual authentication, we must have a SDK client instance.</p>
+<p>The class that handle all SDK features is <strong><code>SteemConnect\Client\Client</code></strong> and for the examples on this section, we will create one instance and name the variable <strong><code>$sdk</code></strong>:</p>
+<p>Also, we are assuming, you have the <strong><code>$config</code></strong> variable from the configuration section available.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -541,21 +489,27 @@ to act on the their behalf.</p>
 
 <span class="c1">// ...</span>
 
-<span class="c1">// set the required scopes on the configuration.</span>
-<span class="nv">$config</span><span class="o">-&gt;</span><span class="na">setScopes</span><span class="p">([</span>
-    <span class="s1">&#39;login&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;vote&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;comment&#39;</span>
-<span class="p">]);</span>
+<span class="c1">// alias the client.</span>
+<span class="k">use</span> <span class="nx">SteemConnect\Client\Client</span><span class="p">;</span>
+
+<span class="c1">// create a sdk client instance, using the</span>
+<span class="c1">// config instance we previously created.</span>
+<span class="nv">$sdk</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
 
-<h3 id="application-and-community-name">Application and Community Name.<a class="headerlink" href="#application-and-community-name" title="Permanent link">&para;</a></h3>
-<p>An optional but interesting feature, is to configure both the application and community names. Those are used to indicate
-what application was used to make the post, and some frontend will display that information.</p>
-<p>If you don't know what I'm talking about, here is an example:</p>
-<p><img alt="app name example" src="https://ipfs.io/ipfs/Qmcesk7EDVRr1t1kgD7P4AfsycZcka7gafvNpMnKdq3APi" /></p>
-<p>The syntax for application name, as of right now, is <strong><code>lowercase-app-name/version</code></strong>, here's an example:</p>
+<h2 id="the-oauth-flow">The OAuth Flow.<a class="headerlink" href="#the-oauth-flow" title="Permanent link">&para;</a></h2>
+<p>Those those who are not so familiar with OAuth, the basic flow is this:</p>
+<ol>
+<li>Application redirects the user the the OAuth Provider, in this case, SteemConnect.</li>
+<li>The user, grants, on the SteemConnect page, the permissions so your application can act on the user behalf.</li>
+<li>After the authorization, the provider, in this case SteemConnect, will redirect the user back to your application, with a temporary code that will be exchanged with an access token.</li>
+</ol>
+<p>All of those steps are wrapped by the SDK.</p>
+<p>This means, that you only need to do two SDK calls in order to authenticate and get authorization from users.</p>
+<h2 id="redirecting-to-steemconnect">Redirecting To SteemConnect.<a class="headerlink" href="#redirecting-to-steemconnect" title="Permanent link">&para;</a></h2>
+<p>When the users access your application, you will need to do a redirect to SteemConnect.</p>
+<p>Now, using the SDK we can build the URL used to redirect the users to:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -565,12 +519,73 @@ what application was used to make the post, and some frontend will display that 
 
 <span class="c1">// ...</span>
 
-<span class="c1">// set the application name and version.</span>
-<span class="nv">$config</span><span class="o">-&gt;</span><span class="na">setApp</span><span class="p">(</span><span class="s1">&#39;coolapp/2.4&#39;</span><span class="p">);</span>
+<span class="c1">// get the authorization URL.</span>
+<span class="nv">$authorizationURL</span> <span class="o">=</span> <span class="nv">$sdk</span><span class="o">-&gt;</span><span class="na">auth</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getAuthorizationUrl</span><span class="p">();</span>
 </pre></div>
 </td></tr></table>
 
-<p>The same way, it's possible to set the community name:</p>
+<p>Now, you can actually redirect the user to that URL. Be free to use any method you want.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+
+<span class="c1">// using pure PHP:</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Location: </span><span class="si">{</span><span class="nv">$authorizationURL</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">);</span>
+
+
+<span class="c1">// using Laravel inside a controller:</span>
+<span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="nv">$authorizationURL</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>By doing that for the first time, your users will be faced with the following authorization page:</p>
+<p><img alt="http://ipfs.io/ipfs/QmShgahjCzUbbdZPrG4rHGcJL8ugeR2XspfFwrDw9wy6zj" src="http://ipfs.io/ipfs/QmShgahjCzUbbdZPrG4rHGcJL8ugeR2XspfFwrDw9wy6zj" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Notice on this example, the application requesting permission is <a href="https://busy.org">Busy.org</a>. Both the logo and application name will change on your own applications, and can be customized through SteemConnect dashboard.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Also, the scopes required may change by your own requirements, be sure to read all and request only the ones you actually need. Avoid having more powers over your users accounts than you actually need.</p>
+</div>
+<h2 id="handling-the-return">Handling the Return.<a class="headerlink" href="#handling-the-return" title="Permanent link">&para;</a></h2>
+<p>In some places referred to as <code>callback</code>, the return from an authorization flow is just the practice of exchanging the temporary grant code
+with a real access token, that is required to operate your users accounts after the authorization.</p>
+<p>The SDK also abstracts all that parsing, so you only need to do one call at callback phase.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+
+<span class="c1">// exchanging the authorization code by a access token.</span>
+<span class="nv">$token</span> <span class="o">=</span> <span class="nv">$sdk</span><span class="o">-&gt;</span><span class="na">auth</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">parseReturn</span><span class="p">();</span>
+</pre></div>
+</td></tr></table>
+
+<p>The token returned on the callback / return page is an instance of <strong><code>SteemConnect\Auth\Token</code></strong>, which we will discuss on the next section.</p>
+<h2 id="storing-and-using-access-tokens">Storing and Using Access Tokens.<a class="headerlink" href="#storing-and-using-access-tokens" title="Permanent link">&para;</a></h2>
+<p>Each access token is specific to a given user. Meaning when you need to the access token every time you need to broadcast an operation
+to the Steem blockchain.</p>
+<p>Since the tokens as an instance of <strong><code>SteemConnect\Auth\Token</code></strong>, it's easy to serialize and factory it's instance:</p>
+<h3 id="serialization-for-storage">Serialization for Storage:<a class="headerlink" href="#serialization-for-storage" title="Permanent link">&para;</a></h3>
+<p>When you have a <strong><code>Token</code></strong> instance, and you need to store it, you can transform the token into a JSON string by doing:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -580,25 +595,49 @@ what application was used to make the post, and some frontend will display that 
 
 <span class="c1">// ...</span>
 
-<span class="c1">// set the community name.</span>
-<span class="nv">$config</span><span class="o">-&gt;</span><span class="na">setCommunity</span><span class="p">(</span><span class="s1">&#39;CoolApp&#39;</span><span class="p">);</span>
+<span class="c1">// create a json representation of the token for storage.</span>
+<span class="nv">$tokenJson</span> <span class="o">=</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$token</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
 
-<h3 id="custom-steemconnect-servers">Custom SteemConnect Servers.<a class="headerlink" href="#custom-steemconnect-servers" title="Permanent link">&para;</a></h3>
-<p>If for some reason, you are using a custom install of SteemConnect (a development install, for example), you may
-change the base URL so all calls will use that domain.</p>
+<h3 id="parsing-stored-tokens">Parsing Stored Tokens.<a class="headerlink" href="#parsing-stored-tokens" title="Permanent link">&para;</a></h3>
+<p>Now, on a late time, when a given user returns to your application, you can just factory the token instance back:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 
 <span class="c1">// ...</span>
 
-<span class="c1">// customize the SteemConnect address.</span>
-<span class="nv">$config</span><span class="o">-&gt;</span><span class="na">setBaseUrl</span><span class="p">(</span><span class="s1">&#39;https://my-custom-steemconnect.com&#39;</span><span class="p">);</span>
+<span class="k">use</span> <span class="nx">SteemConnect\Auth\Token</span><span class="p">;</span>
+
+<span class="c1">// the fromJsonString method will decode </span>
+<span class="c1">// the token json string into a token instance.</span>
+<span class="nv">$token</span> <span class="o">=</span> <span class="nx">Token</span><span class="o">::</span><span class="na">fromJsonString</span><span class="p">(</span><span class="nv">$tokenJson</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<h2 id="using-tokens">Using Tokens.<a class="headerlink" href="#using-tokens" title="Permanent link">&para;</a></h2>
+<p>Since all operations needs to be authenticated, the SDK requires a <code>Token</code> instance to work.</p>
+<p>To configure the access token on the SDK, all you need to do is:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// set the token instance on the SDK, </span>
+<span class="c1">// so operations can be authenticated.</span>
+<span class="nv">$sdk</span><span class="o">-&gt;</span><span class="na">setToken</span><span class="p">(</span><span class="nv">$token</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
                 
@@ -619,7 +658,7 @@ change the base URL so all calls will use that domain.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href=".." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../01-configuration/" title="Configuration" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -628,19 +667,19 @@ change the base URL so all calls will use that domain.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Home
+                Configuration
               </span>
             </div>
           </a>
         
         
-          <a href="../02-authentication/" title="Authentication" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../03-operations/" title="Operations" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Authentication
+                Operations
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
