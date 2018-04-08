@@ -12,7 +12,8 @@ trait HasName
     /**
      * @var string Name of the operation to broadcast.
      */
-    protected $name;
+    protected $name = null;
+
     /**
      * Operation name setter.
      *
@@ -30,9 +31,9 @@ trait HasName
     /**
      * Operation name getter.
      *
-     * @return string
+     * @return null|string
      */
-    public function getName() : string
+    public function getName() : ?string
     {
         return $this->name;
     }

@@ -6,6 +6,13 @@ namespace SteemConnect\Operations;
  * Class CommentOptions.
  *
  * Comment options operation implementation.
+ *
+ * @property null|string $author
+ * @property null|string $permlink
+ * @property bool $allow_curation_rewards
+ * @property bool $allow_votes
+ * @property null|int $max_accepted_payout
+ * @property null|int $percent_steem_dollars
  */
 class CommentOptions extends Operation
 {

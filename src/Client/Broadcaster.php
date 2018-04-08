@@ -9,7 +9,6 @@ use GuzzleHttp\Exception\GuzzleException as HttpClientException;
 use SteemConnect\Exceptions\ClientException;
 use SteemConnect\Exceptions\ResponseException;
 use SteemConnect\Http\Client as HttpClient;
-use SteemConnect\Transactions\Transaction;
 
 /**
  * Class Broadcaster.
@@ -161,17 +160,5 @@ class Broadcaster
             // throw a client exception, passing the previous one.
             throw new ClientException("Error broadcasting the operation", 0, $e);
         }
-    }
-
-    /**
-     * Parses a transaction / success response from SteemConnect into a transaction object.
-     *
-     * @param array $response
-     *
-     * @return Transaction
-     */
-    protected function factoryTransaction(array $response) : Transaction
-    {
-        return Transaction::factory($response);
     }
 }
