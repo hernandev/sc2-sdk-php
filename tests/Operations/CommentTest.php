@@ -159,12 +159,10 @@ class CommentTest extends TestCase
         // start the comment.
         $comment = new Comment();
 
-        // set as reply
-        $comment->reply('foo', 'bar');
-
         // post body
         $comment->body('this is a body ok?');
 
+        // assert a slug was generated for the permlink from the content body.
         $this->assertEquals('this-is-a-body-ok', $comment->permlink);
     }
 }
