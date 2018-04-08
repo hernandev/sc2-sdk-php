@@ -110,4 +110,40 @@ class TransactionTest extends TestCase
         // assert the transaction have the same content after parsed.
         $this->assertEquals($parsedJson, $originalJson);
     }
+
+    /**
+     * Test parsing of transaction when errors happens.
+     */
+    public function test_parsing_errors_no_matching_name()
+    {
+        // copy the transaction data to a local array.
+        $data = $this->transactionData;
+
+        // rename the operation to a custom name.
+        $data['operations'][0][0] = 'some-other-name';
+
+        // factory the transaction.
+        $transaction = Transaction::factory($data);
+
+        // try getting the operations.
+        $this->assertInstanceOf(Collection::class, $transaction->getOperations());
+    }
+
+    /**
+     * Test parsing of transaction when errors happens.
+     */
+    public function test_parsing_errors_no_name_present()
+    {
+        // copy the transaction data to a local array.
+        $data = $this->transactionData;
+
+        // rename the operation to a custom name.
+        $data['operations'][0][0] = null;
+
+        // factory the transaction.
+        $transaction = Transaction::factory($data);
+
+        // try getting the operations.
+        $this->assertInstanceOf(Collection::class, $transaction->getOperations());
+    }
 }
