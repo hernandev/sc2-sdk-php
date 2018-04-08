@@ -3,9 +3,11 @@
 namespace SteemConnect\Client;
 
 use Mockery;
+use SteemConnect\Auth\Manager;
 use SteemConnect\Auth\Token;
 use SteemConnect\Config\Config;
 use SteemConnect\OAuth2\Provider\Provider;
+use SteemConnect\Operations\Operation;
 use SteemConnect\TestCase;
 use SteemConnect\Http\Client as HttpClient;
 
@@ -127,5 +129,71 @@ class ClientTest extends TestCase
 
         // assert the instance was correctly set on the SDK client.
         $this->assertSame($provider, $client->getOAuthProvider());
+    }
+
+    /**
+     * Test auth manager instantiation.
+     */
+    public function test_auth_manager_instance()
+    {
+        // start a client instance.
+        $client = new Client($this->mockConfig());
+
+        // assert the instance of Manager from auth method.
+        $this->assertInstanceOf(Manager::class, $client->auth());
+    }
+
+    /**
+     * Test operation broadcasting from the client.
+     */
+    public function test_broadcasting()
+    {
+        // start a broadcaster mock.
+        /** @var Broadcaster|Mockery\MockInterface $broadcaster */
+        $broadcaster = Mockery::mock(Broadcaster::class);
+        $broadcaster->shouldReceive('setHttpClient')->andReturn($broadcaster);
+        $broadcaster->shouldReceive('setConfig')->andReturn($broadcaster);
+        $broadcaster->shouldReceive('setToken')->andReturn($broadcaster);
+
+        /** @var Operation|Mockery\MockInterface $operation */
+        $operation = Mockery::mock(Operation::class);
+
+        /** @var Response|Mockery\MockInterface $response */
+        $response = Mockery::mock(Response::class);
+
+        // main broadcast method mock.
+        $broadcaster->shouldReceive('broadcast')->andReturn($response);
+
+        // start a client with mock config.
+        $client = new Client($this->mockConfig());
+        // pass the mock token into the client.
+        $client->setToken($this->mockToken());
+
+        // customize the broadcaster instance
+        $client->setBroadcaster($broadcaster);
+
+        // call the broadcast method and get the response.
+        $broadcastResponse = $client->broadcast($operation);
+
+        // assert the return is the same.
+        $this->assertSame($response, $broadcastResponse);
+    }
+
+    /**
+     * Test the client refresh methods.
+     */
+    public function test_refresh_methods()
+    {
+        // start a SDK client.
+        $client = new Client($this->mockConfig());
+        // set a mock token.
+        $client->setToken($this->mockToken());
+
+        // call the refresh method.
+        $client->refreshBroadcaster();
+
+        // assert the broadcaster was created.
+        $this->assertInstanceOf(Broadcaster::class, $client->getBroadcaster());
+
     }
 }
