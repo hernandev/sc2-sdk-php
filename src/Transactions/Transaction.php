@@ -364,17 +364,11 @@ class Transaction implements Arrayable
 
             $operationClass = array_get($this->operationClassMap, $operationName, null);
 
-            if (!$operationClass) {
+            if (!$operationClass || !class_exists($operationClass)) {
                 return null;
             }
 
-            try {
-                $operation = new $operationClass(array_get($operationData, 1));
-
-                return $operation;
-            } catch (\Exception $e) {
-                return null;
-            }
+            return new $operationClass(array_get($operationData, 1));
         });
 
         return $operations->filter();
