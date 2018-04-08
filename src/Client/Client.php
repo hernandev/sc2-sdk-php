@@ -35,9 +35,14 @@ class Client
     protected $provider = null;
 
     /**
-     * @var null|HttpClient
+     * @var null|HttpClient Instance of the broadcaster.
      */
     protected $httpClient = null;
+
+    /**
+     * @var null|Broadcaster Instance of the broadcaster.
+     */
+    protected $broadcaster = null;
 
     /**
      * Client constructor.
@@ -138,7 +143,9 @@ class Client
      */
     public function refreshHttpClient(): self
     {
-        $this->setHttpClient($this->createHttpClient());
+        // refresh the config and access token values.
+        $this->httpClient->setConfig($this->config);
+        $this->httpClient->setAccessToken($this->token);
 
         return $this;
     }
@@ -170,6 +177,50 @@ class Client
     }
 
     /**
+     * Set a custom broadcaster instance.
+     *
+     * Most useful for testing purposes..
+     *
+     * @param Broadcaster $broadcaster
+     *
+     * @return self
+     */
+    public function setBroadcaster(Broadcaster $broadcaster): self
+    {
+        $this->broadcaster = $broadcaster;
+
+        return $this;
+    }
+
+    /**
+     * Returns the current Broadcaster instance on the client.
+     *
+     * @return null|Broadcaster
+     */
+    public function getBroadcaster(): ?Broadcaster
+    {
+        return $this->broadcaster;
+    }
+
+    /**
+     * Refresh the broadcaster instance.
+     *
+     * @return self
+     */
+    public function refreshBroadcaster(): self
+    {
+        if (!$this->broadcaster) {
+            $this->setBroadcaster($this->createBroadcaster());
+        }
+
+        $this->broadcaster->setHttpClient($this->httpClient);
+        $this->broadcaster->setConfig($this->config);
+        $this->broadcaster->setToken($this->token);
+
+        return $this;
+    }
+
+    /**
      * Refresh the provider instance.
      *
      * This method is intended for cases where configuration is replaced after client instance has
@@ -193,17 +244,11 @@ class Client
      */
     public function auth()
     {
-        try {
-            // creates a fresh provider instance to reflect configuration data.
-            $this->refreshProvider();
+        // creates a fresh provider instance to reflect configuration data.
+        $this->refreshProvider();
 
-            // returns a new manager, if possible.
-            return new Manager($this->config, $this->provider, $this->token);
-        } catch (\Exception $e) {
-            // throw the custom exception about authentication instance not being created correctly.
-            throw new ClientException('Error preparing authentication manager, ensure the configuration is correct.');
-        }
-
+        // returns a new manager, if possible.
+        return new Manager($this->config, $this->provider, $this->token);
     }
 
     /**
@@ -221,12 +266,14 @@ class Client
         $this->refreshProvider();
         // refresh the http client because the instances may have changed.
         $this->refreshHttpClient();
+        // refresh the broadcaster.
+        $this->refreshBroadcaster();
 
         // returns the broadcast operation result.
         // notice no try catch here because the broadcast will throw
         // a response or request exception internally and it should just
         // be forwarded.
-        return $this->createBroadcaster()->broadcast($operations);
+        return $this->getBroadcaster()->broadcast($operations);
     }
 
     /**
@@ -247,7 +294,6 @@ class Client
     protected function createHttpClient()
     {
         return new HttpClient($this->getConfig(), $this->getToken());
-
     }
 
     /**
