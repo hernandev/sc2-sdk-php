@@ -15,7 +15,9 @@ trait SerializesJson
     /**
      * @var string List of attributes that must be serialized as JSON.
      */
-    protected $jsonParameters = 'json';
+    protected $jsonParameters = [
+        'json'
+    ];
 
     /**
      * Creates a parameters array, serializing fields marked as JSON string.
