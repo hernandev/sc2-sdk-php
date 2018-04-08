@@ -117,8 +117,8 @@ trait HasParameters
         // forget the element on the parameters array.
         Arr::forget($this->parameters, $key);
 
-        // return the parameter key existence, to indicate operation success or failure.
-        return Arr::has($this->parameters, $key);
+        // return true if the parameter no longer exists.
+        return !Arr::has($this->parameters, $key);
     }
 
     /**
@@ -135,6 +135,6 @@ trait HasParameters
         Arr::forget($this->parameters, "{$parameter}.{$innerParameter}");
 
         // return the parameter key existence, to indicate operation success or failure.
-        return Arr::has($this->parameters, "{$parameter}.{$innerParameter}");
+        return !Arr::has($this->parameters, "{$parameter}.{$innerParameter}");
     }
 }

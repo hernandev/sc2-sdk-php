@@ -91,15 +91,4 @@ class Manager
         // return the access token parsed from response.
         return $this->accessToken;
     }
-
-    /**
-     * Factories a new Http Client from inside the manager.
-     *
-     * @return Client
-     */
-    protected function getHttpClient()
-    {
-        // setup a new HttpClient.
-        return new Client($this->config, $this->accessToken);
-    }
 }

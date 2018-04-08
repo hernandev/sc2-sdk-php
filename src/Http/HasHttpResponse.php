@@ -40,6 +40,16 @@ trait HasHttpResponse
     protected $responseHeaders = null;
 
     /**
+     * Returns the internal Http response instance.
+     *
+     * @return null|ResponseInterface
+     */
+    public function getHttpResponse() : ?ResponseInterface
+    {
+        return $this->responseInstance;
+    }
+
+    /**
      * Configure the http response on the current resource.
      *
      * @param ResponseInterface $response

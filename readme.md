@@ -8,5 +8,7 @@
 Easily integrate STEEM blockchain into your PHP applications, though [SteemConnect](https://steemconnect.com).
 
 ## Documentation
-WIP
+
+The complete documentation for this library can be read at: 
+[https://hernandev.github.io/sc2-sdk-php](https://hernandev.github.io/sc2-sdk-php).
 

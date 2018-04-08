@@ -13,9 +13,11 @@ use SteemConnect\Operations\Operation;
 trait SerializesJson
 {
     /**
-     * @var array List of attributes that must be serialized as JSON.
+     * @var string List of attributes that must be serialized as JSON.
      */
-    protected $jsonParameters = [];
+    protected $jsonParameters = [
+        'json'
+    ];
 
     /**
      * Creates a parameters array, serializing fields marked as JSON string.
@@ -35,11 +37,17 @@ trait SerializesJson
             // if the current value is indeed an array...
             if (is_array($value)) {
                 // rewrite it's value with the JSON serialized version.
-                Arr::set($parameters, $parameter, json_encode($value));
+                Arr::set($parameters, $parameter, utf8_encode(json_encode($value)));
             }
 
+            // set the array as json string.
             if (is_object($value) && method_exists($value, 'toArray')) {
-                Arr::set($parameters, $parameter, json_encode($value->toArray()));
+                Arr::set($parameters, $parameter, utf8_encode(json_encode($value->toArray())));
+            }
+
+            // set the value as it is, if string.
+            if (is_string($value)) {
+                Arr::set($parameters, $parameter, utf8_encode($value));
             }
         });
 

@@ -211,4 +211,21 @@ class Comment extends Operation
         // set the json metadata as string or array
         return $this->setParameter('json_metadata', $metadata);
     }
+
+    /**
+     * Custom getter implementation.
+     *
+     * @param $name
+     * @return array|mixed|null|Operation|SubOperation|string
+     */
+    public function __get($name)
+    {
+        $defaultGetValue = parent::__get($name);
+
+        if ($defaultGetValue) {
+            return $defaultGetValue;
+        }
+
+        return collect((array) $this->getParameter('json_metadata'))->get($name);
+    }
 }
